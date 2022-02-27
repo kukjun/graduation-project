@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/postgresql" auth="Container" type="javax.sql.DataSource"
+              maxActive="10" maxIdle="3" maxWait="10000"
+              username="adminkuk"
+              password="kukjun"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/simpletodays"
+              closeMethod="close"/>
+</Context>
