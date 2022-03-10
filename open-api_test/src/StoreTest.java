@@ -1,12 +1,10 @@
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-// 2월 08일 12시의 api 값을 console 에서 호출
-public class Test {
+public class StoreTest {
     public static void main(String[] args) throws Exception {
 
         // 변수 설정
@@ -15,9 +13,8 @@ public class Test {
 
         String nx = "69";
         String ny = "100";
-        String baseDate = "20220227";
-        String baseTime = "0900";
-        String type = "json";
+        String baseDate = "20220310";
+        String baseTime = "1800";
 
         StringBuilder urlBuilder = new StringBuilder(apiURL);
         urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + authKey);
@@ -53,15 +50,8 @@ public class Test {
         rd.close();
         conn.disconnect();
         String result = sb.toString();
+
         System.out.println(result);
-
-        String fileName = "20220227_(" + nx + "," + ny + ").xml";
-
-        try (FileWriter writer = new FileWriter("result/" + fileName)) {
-            writer.write(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 }
