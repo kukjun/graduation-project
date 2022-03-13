@@ -22,9 +22,9 @@ public class PsqlMemberDao implements MemberDao {
 
     @Override
     public List<Member> selectList() throws Exception {
-        String query = "SELECT no, id, password, email, name, locationCode" +
+        String query = "SELECT manageId, id, password, email, name, locationCode" +
                 " from members" +
-                " order by no";
+                " order by manageId";
         Connection connection = dataSource.getConnection();
         try (PreparedStatement pstmt = connection.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
@@ -32,7 +32,7 @@ public class PsqlMemberDao implements MemberDao {
 
             while (rs.next()) {
                 members.add(new Member()
-                        .setNo(rs.getInt("no"))
+                        .setManageId(rs.getInt("manageId"))
                         .setId(rs.getString("id"))
                         .setName(rs.getString("name"))
                         .setEmail(rs.getString("email"))
@@ -45,7 +45,7 @@ public class PsqlMemberDao implements MemberDao {
 
     @Override
     public int insert(Member member) throws Exception {
-        String query = "INSERT INTO members (no, id, password, email, name, locationCode) " +
+        String query = "INSERT INTO members (manageId, id, password, email, name, locationCode) " +
                 "VALUES (DEFAULT, ?, ?, ?, ?, NULL)";
         int success;
         Connection connection = dataSource.getConnection();
@@ -63,38 +63,38 @@ public class PsqlMemberDao implements MemberDao {
     }
 
     @Override
-    public int delete(int no) throws Exception {
+    public int delete(int manageId) throws Exception {
         String query = "DELETE " +
                 "FROM members " +
-                "WHERE no=?";
+                "WHERE manageId=?";
         int success;
         Connection connection = dataSource.getConnection();
 
         try (
                 PreparedStatement pstmt = connection.prepareStatement(query)
         ) {
-            pstmt.setInt(1, no);
+            pstmt.setInt(1, manageId);
             success = pstmt.executeUpdate();
         }
         return success;
     }
 
     @Override
-    public Member selectOne(int no) throws Exception {
-        String query = "SELECT no, id, password, email, name, locationCode " +
+    public Member selectOne(int manageId) throws Exception {
+        String query = "SELECT manageId, id, password, email, name, locationCode " +
                 "FROM members " +
-                "WHERE no=?";
+                "WHERE manageId=?";
         Connection connection = dataSource.getConnection();
         Member returnMember;
         try (
                 PreparedStatement pstmt = connection.prepareStatement(query)
         ) {
-            pstmt.setInt(1, no);
+            pstmt.setInt(1, manageId);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
 
             returnMember = new Member()
-                    .setNo(no)
+                    .setManageId(manageId)
                     .setId(rs.getString("id"))
                     .setPassword(rs.getString("password"))
                     .setEmail(rs.getString("email"))
@@ -108,14 +108,14 @@ public class PsqlMemberDao implements MemberDao {
         int success = 0;
         String query = "UPDATE members " +
                 "SET locationCode=? " +
-                "WHERE no=?";
+                "WHERE manageId=?";
         Connection connection = dataSource.getConnection();
 
         try (
                 PreparedStatement pstmt = connection.prepareStatement(query)
         ) {
             pstmt.setInt(1, member.getLocationCode());
-            pstmt.setInt(2, member.getNo());
+            pstmt.setInt(2, member.getManageId());
             success = pstmt.executeUpdate();
         }
         return success;
@@ -123,8 +123,8 @@ public class PsqlMemberDao implements MemberDao {
 
     @Override
     public int exist(String id, String password) throws Exception {
-        int no = 0;
-        String query = "SELECT no " +
+        int manageId = 0;
+        String query = "SELECT manageId " +
                 "FROM members " +
                 "WHERE id=? AND password=?";
         Connection connection = dataSource.getConnection();
@@ -136,10 +136,10 @@ public class PsqlMemberDao implements MemberDao {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                no = rs.getInt("no");
+                manageId = rs.getInt("manageId");
             }
         }
-        return no;
+        return manageId;
     }
 
     @Override

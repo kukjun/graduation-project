@@ -11,15 +11,15 @@
     <title>WeatherInputLocalInfo</title>
 </head>
 <body>
-    <h1>지역 정보를 입력해주세요</h1>
-    <h2>현재 저장된 지역 정보들</h2>
-    <p>대전광역시 유성구 - x:67, y=101</p>
-    <p>대전광역시 유성구 온천1동 - x:66, y:100</p>
-    <p>대전광역시 동구 판암동 - x:69, y:100</p>
+    <p>
+        지역정보를 입력하세요.<br>
+        시, 구, 동 순서대로 입력해주세요
+    </p>
 
     <form action="/api/weather/inputLocalInfo.do" method="post">
-        x 좌표: <input type="text" name="x"> <br>
-        y 좌표: <input type="text" name="y"> <br>
+        시: <input type="text" name="localLevel1"> <br>
+        구: <input type="text" name="localLevel2"> <br>
+        동: <input type="text" name="localLevel3"> <br>
         <input type="submit" value="추가">
         <input type="reset" value="취소">
     </form>

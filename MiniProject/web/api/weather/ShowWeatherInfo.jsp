@@ -15,15 +15,16 @@
 </head>
 <body>
     <h1>날씨 정보</h1>
-    <p>지역 x: ${location.x}, y: ${location.y}</p>
-    <p>PTY: ${location.PTY}</p>
-    <p>REH: ${location.REH}</p>
-    <p>RN1: ${location.RN1}</p>
-    <p>T1H: ${location.t1H}</p>
-    <p>UUU: ${location.UUU}</p>
-    <p>VVV: ${location.VVV}</p>
-    <p>VEC: ${location.VEC}</p>
-    <p>WSD: ${location.WSD}</p>
+    <p>baseDate: ${baseDate}</p>
+    <p>baseTime: ${baseTime}</p>
+    <p>PTY: ${weather.PTY}</p>
+    <p>REH: ${weather.REH}</p>
+    <p>RN1: ${weather.RN1}</p>
+    <p>T1H: ${weather.t1H}</p>
+    <p>UUU: ${weather.UUU}</p>
+    <p>VVV: ${weather.VVV}</p>
+    <p>VEC: ${weather.VEC}</p>
+    <p>WSD: ${weather.WSD}</p>
 
 </body>
 </html>

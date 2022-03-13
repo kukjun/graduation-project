@@ -2,16 +2,11 @@ package spms.vo;
 
 public class Location {
     private int locationCode;
-    private int x;
-    private int y;
-    private double PTY;
-    private double REH;
-    private double RN1;
-    private double T1H;
-    private double UUU;
-    private double VVV;
-    private double VEC;
-    private double WSD;
+    private String localLevel1;
+    private String localLevel2;
+    private String localLevel3;
+    private String x;
+    private String y;
 
     public int getLocationCode() {
         return locationCode;
@@ -22,95 +17,48 @@ public class Location {
         return this;
     }
 
-    public int getX() {
+    public String getX() {
         return x;
     }
 
-    public Location setX(int x) {
+    public Location setX(String x) {
         this.x = x;
         return this;
     }
 
-    public int getY() {
+    public String getY() {
         return y;
     }
 
-    public Location setY(int y) {
+    public Location setY(String y) {
         this.y = y;
         return this;
     }
 
-    public double getPTY() {
-        return PTY;
+    public String getLocalLevel1() {
+        return localLevel1;
     }
 
-    public Location setPTY(double PTY) {
-        this.PTY = PTY;
+    public Location setLocalLevel1(String localLevel1) {
+        this.localLevel1 = localLevel1;
         return this;
     }
 
-    public double getREH() {
-        return REH;
+    public String getLocalLevel2() {
+        return localLevel2;
     }
 
-    public Location setREH(double REH) {
-        this.REH = REH;
+    public Location setLocalLevel2(String localLevel2) {
+        this.localLevel2 = localLevel2;
         return this;
     }
 
-    public double getRN1() {
-        return RN1;
+    public String getLocalLevel3() {
+        return localLevel3;
     }
 
-    public Location setRN1(double RN1) {
-        this.RN1 = RN1;
+    public Location setLocalLevel3(String localLevel3) {
+        this.localLevel3 = localLevel3;
         return this;
     }
-
-    // T1H 를 인식하지 못함.
-    public double getT1H() {
-        return T1H;
-    }
-
-    public Location setT1H(double T1H) {
-        this.T1H = T1H;
-        return this;
-    }
-
-    public double getUUU() {
-        return UUU;
-    }
-
-    public Location setUUU(double UUU) {
-        this.UUU = UUU;
-        return this;
-    }
-
-    public double getVVV() {
-        return VVV;
-    }
-
-    public Location setVVV(double VVV) {
-        this.VVV = VVV;
-        return this;
-    }
-
-    public double getVEC() {
-        return VEC;
-    }
-
-    public Location setVEC(double VEC) {
-        this.VEC = VEC;
-        return this;
-    }
-
-    public double getWSD() {
-        return WSD;
-    }
-
-    public Location setWSD(double WSD) {
-        this.WSD = WSD;
-        return this;
-    }
-
 }

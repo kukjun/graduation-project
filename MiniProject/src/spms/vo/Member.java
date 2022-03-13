@@ -1,19 +1,19 @@
 package spms.vo;
 
 public class Member {
-    private int no;
+    private int manageId;
     private String id;
     private String password;
     private String email;
     private String name;
     private int locationCode;
 
-    public int getNo() {
-        return no;
+    public int getManageId() {
+        return manageId;
     }
 
-    public Member setNo(int no) {
-        this.no = no;
+    public Member setManageId(int manageId) {
+        this.manageId = manageId;
         return this;
     }
 

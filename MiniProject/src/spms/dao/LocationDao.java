@@ -9,12 +9,8 @@ public interface LocationDao {
 
     public Location selectOne(int locationNo) throws Exception;
 
-    public int insert(Location location) throws Exception;
+    public int findLocationCode(String x, String y) throws Exception;
 
-    public int update(Location location) throws Exception;
 
-    public int delete(int locationNo) throws Exception;
-
-    public Location exist(int x, int y) throws Exception;
-
+    int findLocationCode(String localLevel1, String localLevel2, String localLevel3) throws Exception;
 }

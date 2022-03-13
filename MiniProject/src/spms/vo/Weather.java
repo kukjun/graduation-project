@@ -1,5 +1,9 @@
+package spms.vo;
+
 public class Weather {
     private int locationCode;
+    private String date;
+    private String time;
     private double PTY;
     private double REH;
     private double RN1;
@@ -15,6 +19,24 @@ public class Weather {
 
     public Weather setLocationCode(int locationCode) {
         this.locationCode = locationCode;
+        return this;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Weather setDate(String date) {
+        this.date = date;
+        return this;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public Weather setTime(String time) {
+        this.time = time;
         return this;
     }
 
@@ -93,6 +115,8 @@ public class Weather {
     @Override
     public String toString() {
         return "locationCode = " + locationCode +
+                "\ndate = " + date +
+                "\ntime = " + time +
                 "\nPTY = " + PTY +
                 "\nREH = " + REH +
                 "\nRN1 = " + RN1 +

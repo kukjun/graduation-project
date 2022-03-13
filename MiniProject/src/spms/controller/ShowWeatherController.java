@@ -1,11 +1,13 @@
 package spms.controller;
 
 import spms.annotation.Component;
+import spms.api.weather.WeatherAPI;
 import spms.bind.DataBinding;
 import spms.dao.LocationDao;
 import spms.dao.MemberDao;
 import spms.vo.Location;
 import spms.vo.Member;
+import spms.vo.Weather;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -14,6 +16,12 @@ import java.util.Map;
 public class ShowWeatherController implements Controller, DataBinding {
     MemberDao memberDao;
     LocationDao locationDao;
+    WeatherAPI api = new WeatherAPI(
+            "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst",
+            "Tk3dN%2FBOZoQkVmZXXo3ZQSKXHvJL4SwU%2FFV8rcF%2BsMsEXFfRuSdcPl6oweXAbVNKD3TiJpBFxBop76XQb45ZFg%3D%3D"
+    );
+    String baseDate = "20220313";
+    String baseTime = "1800";
 
     public ShowWeatherController setMemberDao(MemberDao memberDao) {
         this.memberDao = memberDao;
@@ -46,8 +54,12 @@ public class ShowWeatherController implements Controller, DataBinding {
         // 이전에 지역 등록을 한 경우
         else {
             Location location = locationDao.selectOne(member.getLocationCode());
+            Weather weather = api.use(location.getX(), location.getY(), baseDate, baseTime);
 
-            model.put("location", location);
+
+            model.put("weather", weather);
+            model.put("baseDate", baseDate);
+            model.put("baseTime", baseTime);
             return "/api/weather/ShowWeatherInfo.jsp";
         }
 

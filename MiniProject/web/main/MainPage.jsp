@@ -13,6 +13,6 @@
 <body>
     <h1>메인 페이지 입니다.</h1>
     <p><a href="/login/LoginForm.jsp">로그인</a></p>
-    <p><a href="/register/Register.jsp">회원가입</a></p>
+    <p><a href="/register/RegisterForm.jsp">회원가입</a></p>
 </body>
 </html>

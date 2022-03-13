@@ -1,18 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: kukjunlee
-  Date: 2022/02/24
-  Time: 4:13 PM
+  Date: 2022/03/13
+  Time: 2:58 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Register</title>
+    <title>ErrorPage</title>
 </head>
 <body>
-<h1>
-    회원가입 페이지 미구현
-</h1>
+    <h1>잘못된 접근입니다.</h1>
 </body>
 </html>
