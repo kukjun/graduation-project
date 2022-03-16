@@ -1,3 +1,6 @@
+package main.java;
+
+import main.java.vo.Weather;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class IntegrateTest {
+public class XMLIntegrateTest {
 
     enum WeatherValue {
         PTY, REH, RN1, T1H, UUU, VEC, VVV, WSD
@@ -68,6 +71,7 @@ public class IntegrateTest {
 
         System.out.println(result);
 
+        // 문자열 Document 로 변경해서 List 형태로 가져와서 객체에 파싱함.
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(result));
@@ -80,7 +84,7 @@ public class IntegrateTest {
             System.out.println("--------------------------");
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+//                System.out.println("\nCurrent Element :" + nNode.getNodeName());
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
 
@@ -88,7 +92,7 @@ public class IntegrateTest {
                     double value = Double.parseDouble(eElement.getElementsByTagName("obsrValue").item(0).getTextContent());
 
                     WeatherValue weatherValue = WeatherValue.valueOf(category);
-                    System.out.println(WeatherValue.valueOf(category).ordinal());
+//                    System.out.println(WeatherValue.valueOf(category).ordinal());
 
                     switch (weatherValue) {
                         case PTY:
