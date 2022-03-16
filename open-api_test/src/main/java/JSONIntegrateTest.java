@@ -4,6 +4,7 @@ import main.java.vo.Weather;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -20,7 +21,7 @@ public class JSONIntegrateTest {
 
         // 입력받을 weather 객체
         Weather weather = new Weather();
-// 변수 설정
+        // 변수 설정
         String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
         String authKey = "Tk3dN%2FBOZoQkVmZXXo3ZQSKXHvJL4SwU%2FFV8rcF%2BsMsEXFfRuSdcPl6oweXAbVNKD3TiJpBFxBop76XQb45ZFg%3D%3D";
 
@@ -87,7 +88,7 @@ public class JSONIntegrateTest {
             category = (String) object.get("category"); // item 에서 카테고리를 검색
 
             // Error 발생할수도 있으며 받아온 정보를 double이 아니라 문자열로 읽으면 오류
-            value = Double.parseDouble((String)object.get("obsrValue"));
+            value = Double.parseDouble((String) object.get("obsrValue"));
 
             WeatherValue weatherValue = WeatherValue.valueOf(category);
 
