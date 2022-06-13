@@ -1,0 +1,13 @@
+spring:
+  h2: # h2에 관한 설정
+    console:  # h2 데이터베이스의 콘솔창을 위한 설정
+      enabled: true
+      path: "/h2-console"
+  sql:  # sql을 통한 데이터베이스 초기 테이블 설정
+    init:
+      mode: always # sql을 통한 초기화를 항상 초기화하도록
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
