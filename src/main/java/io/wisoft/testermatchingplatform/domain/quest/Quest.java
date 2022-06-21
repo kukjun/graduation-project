@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
+import io.wisoft.testermatchingplatform.domain.quest.persistance.QuestEntity;
 import lombok.Getter;
 
 import java.sql.Timestamp;
@@ -56,5 +57,6 @@ public class Quest {
         this.requireCondition = requireCondition;
         this.preferenceCondition = preferenceCondition;
     }
+
 
 }

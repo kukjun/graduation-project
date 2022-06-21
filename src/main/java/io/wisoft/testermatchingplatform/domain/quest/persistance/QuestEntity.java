@@ -2,6 +2,7 @@ package io.wisoft.testermatchingplatform.domain.quest.persistance;
 
 
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,31 +29,24 @@ public class QuestEntity {
     @JoinColumn(name = "ntc_id")
     private Long ntcId;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "register_time", nullable = false)
     private Timestamp registerTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "recruitment_time_start", nullable = false)
     private Timestamp recruitmentTimeStart;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "recruitment_time_limit", nullable = false)
     private Timestamp recruitmentTimeLimit;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "duration_time_start", nullable = false)
     private Timestamp durationTimeStart;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "duration_time_limit", nullable = false)
     private Timestamp durationTimeLimit;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_time_start", nullable = false)
     private Timestamp modifyTimeStart;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_time_limit", nullable = false)
     private Timestamp modifyTimeLimit;
 
@@ -87,7 +81,7 @@ public class QuestEntity {
     public QuestEntity() {
     }
 
-    // Quest -> QuestEntity
+    // Quest <-> QuestEntity
     public static QuestEntity from(final Quest quest) {
         return new QuestEntity(
                 quest.getTitle(),
