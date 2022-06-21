@@ -87,8 +87,6 @@ public class QuestEntity {
     public QuestEntity() {
     }
 
-    ;
-
     // Quest -> QuestEntity
     public static QuestEntity from(final Quest quest) {
         return new QuestEntity(
