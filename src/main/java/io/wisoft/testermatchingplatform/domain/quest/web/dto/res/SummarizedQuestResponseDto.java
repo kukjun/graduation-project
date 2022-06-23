@@ -2,9 +2,11 @@ package io.wisoft.testermatchingplatform.domain.quest.web.dto.res;
 
 import io.wisoft.testermatchingplatform.domain.quest.Category;
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
+import lombok.Getter;
 
 import java.sql.Timestamp;
 
+@Getter
 public class SummarizedQuestResponseDto {
 
     private Long id;

@@ -2,7 +2,7 @@ package io.wisoft.testermatchingplatform.domain.quest.persistance;
 
 
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 
 import javax.persistence.*;
 import java.sql.Timestamp;
