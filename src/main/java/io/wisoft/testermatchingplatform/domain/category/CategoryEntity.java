@@ -1,8 +1,4 @@
-package io.wisoft.testermatchingplatform.domain.quest.persistance;
-
-import io.wisoft.testermatchingplatform.domain.quest.Category;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+package io.wisoft.testermatchingplatform.domain.category;
 
 import javax.persistence.*;
 
@@ -22,14 +18,12 @@ public class CategoryEntity {
 
     }
 
-    public CategoryEntity(Long id, String name) {
-        this.id = id;
+    public CategoryEntity(String name) {
         this.name = name;
     }
 
     public static CategoryEntity from(final Category category) {
         return new CategoryEntity(
-                category.getId(),
                 category.getName()
         );
     }

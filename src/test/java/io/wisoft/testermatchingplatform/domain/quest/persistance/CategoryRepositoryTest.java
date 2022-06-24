@@ -1,6 +1,8 @@
 package io.wisoft.testermatchingplatform.domain.quest.persistance;
 
-import io.wisoft.testermatchingplatform.domain.quest.Category;
+import io.wisoft.testermatchingplatform.domain.category.Category;
+import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
+import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -31,7 +33,7 @@ class CategoryRepositoryTest {
         Long id = 1L;
         String name = "게임 테스트";
 
-        categoryRepository.save(new CategoryEntity(id, name));
+        categoryRepository.save(new CategoryEntity(name));
 
         // when
         Category category = categoryRepository.getReferenceById(id).toDomain();

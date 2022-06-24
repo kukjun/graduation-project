@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.domain.quest;
+package io.wisoft.testermatchingplatform.domain.category;
 
 import lombok.Getter;
 

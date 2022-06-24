@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.domain.quest.persistance;
+package io.wisoft.testermatchingplatform.domain.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

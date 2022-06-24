@@ -1,6 +1,6 @@
-package io.wisoft.testermatchingplatform.domain.quest.web.dto.res;
+package io.wisoft.testermatchingplatform.web.dto.res;
 
-import io.wisoft.testermatchingplatform.domain.quest.Category;
+import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import lombok.Getter;
 

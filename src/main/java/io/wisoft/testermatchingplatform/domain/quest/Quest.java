@@ -1,6 +1,7 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
-import io.wisoft.testermatchingplatform.domain.quest.persistance.QuestEntity;
+import io.wisoft.testermatchingplatform.domain.category.Category;
+import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import lombok.Getter;
 
 import java.sql.Timestamp;
@@ -11,7 +12,7 @@ public class Quest {
     private Long id;
     private String title;
     private String content;
-    private Long categoryId;
+    private Category category;
     private Long ntcId;
     private Timestamp registerTime;
     private Timestamp recruitmentTimeStart;
@@ -27,7 +28,7 @@ public class Quest {
 
     public Quest(final String title,
                  final String content,
-                 final Long categoryId,
+                 final Category category,
                  final Long ntcId,
                  final Timestamp registerTime,
                  final Timestamp recruitmentTimeStart,
@@ -43,7 +44,7 @@ public class Quest {
     ) {
         this.title = title;
         this.content = content;
-        this.categoryId = categoryId;
+        this.category = category;
         this.ntcId = ntcId;
         this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;

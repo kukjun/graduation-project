@@ -1,8 +1,8 @@
-package io.wisoft.testermatchingplatform.domain.quest.persistance;
+package io.wisoft.testermatchingplatform.domain.quest;
 
 
-import io.wisoft.testermatchingplatform.domain.quest.Quest;
-
+import io.wisoft.testermatchingplatform.domain.category.Category;
+import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -24,7 +24,8 @@ public class QuestEntity {
     private String content;
 
     @JoinColumn(name = "category_id")
-    private Long categoryId;
+    @ManyToOne
+    private CategoryEntity category;
 
     @JoinColumn(name = "ntc_id")
     private Long ntcId;
@@ -62,10 +63,10 @@ public class QuestEntity {
     @Column(name = "preference_condition")
     private String preferenceCondition;
 
-    public QuestEntity(String title, String content, Long categoryId, Long ntcId, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long capacity, Long paymentPoint) {
+    public QuestEntity(String title, String content, CategoryEntity category, Long ntcId, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long capacity, Long paymentPoint) {
         this.title = title;
         this.content = content;
-        this.categoryId = categoryId;
+        this.category = category;
         this.ntcId = ntcId;
         this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
@@ -86,7 +87,7 @@ public class QuestEntity {
         return new QuestEntity(
                 quest.getTitle(),
                 quest.getContent(),
-                quest.getCategoryId(),
+                CategoryEntity.from(quest.getCategory()),
                 quest.getNtcId(),
                 quest.getRegisterTime(),
                 quest.getRecruitmentTimeStart(),
@@ -102,21 +103,21 @@ public class QuestEntity {
 
     public Quest toDomain() {
         return new Quest(
-                this.title = title,
-                this.content = content,
-                this.categoryId = categoryId,
-                this.ntcId = ntcId,
-                this.registerTime = registerTime,
-                this.recruitmentTimeStart = recruitmentTimeStart,
-                this.recruitmentTimeLimit = recruitmentTimeLimit,
-                this.durationTimeStart = durationTimeStart,
-                this.durationTimeLimit = durationTimeLimit,
-                this.modifyTimeStart = modifyTimeStart,
-                this.modifyTimeLimit = modifyTimeLimit,
-                this.capacity = capacity,
-                this.paymentPoint = paymentPoint,
-                this.requireCondition = requireCondition,
-                this.preferenceCondition = preferenceCondition
+                this.title,
+                this.content,
+                this.category.toDomain(),
+                this.ntcId,
+                this.registerTime,
+                this.recruitmentTimeStart,
+                this.recruitmentTimeLimit,
+                this.durationTimeStart,
+                this.durationTimeLimit,
+                this.modifyTimeStart,
+                this.modifyTimeLimit,
+                this.capacity,
+                this.paymentPoint,
+                this.requireCondition,
+                this.preferenceCondition
         );
     }
 
