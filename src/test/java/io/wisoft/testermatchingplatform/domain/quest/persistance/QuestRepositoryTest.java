@@ -78,7 +78,6 @@ class QuestRepositoryTest {
         //given
         String title1 = "testTitle";
         String content1 = "testContent";
-        Long categoryId1 = 1L;
         Long ntcId1 = 1L;
         Timestamp registerTime1 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart1 = new Timestamp(System.currentTimeMillis() + 20000);
@@ -90,9 +89,12 @@ class QuestRepositoryTest {
         Long capacity1 = 1L;
         Long paymentPoint1 = 1000L;
 
+        String categoryName1 = "게임 테스트";
+
+        CategoryEntity categoryEntity1 = new CategoryEntity(categoryName1);
+
         String title2 = "testTitle2";
         String content2 = "testContent2";
-        Long categoryId2 = 2L;
         Long ntcId2 = 2L;
         Timestamp registerTime2 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart2 = new Timestamp(System.currentTimeMillis() + 20000);
@@ -104,26 +106,31 @@ class QuestRepositoryTest {
         Long capacity2 = 2L;
         Long paymentPoint2 = 2000L;
 
-//        questRepository.save(new QuestEntity(
-//                title1, content1, categoryId1, ntcId1, registerTime1, recruitmentTimeStart1, recruitmentTimeLimit1, durationTimeStart1, durationTimeLimit1, modifyTimeStart1, modifyTimeLimit1, capacity1, paymentPoint1
-//        ));
-//        questRepository.save(new QuestEntity(
-//                title2, content2, categoryId2, ntcId2, registerTime2, recruitmentTimeStart2, recruitmentTimeLimit2, durationTimeStart2, durationTimeLimit2, modifyTimeStart2, modifyTimeLimit2, capacity2, paymentPoint2
-//        ));
-//
-//        // when
-//        List<QuestEntity> entityList = questRepository.findByCategoryId(categoryId1);
-//        Quest quest = entityList.get(0).toDomain();
-//
-//        // then
-//        assertEquals(1, entityList.size());
-//        assertEquals(title1, quest.getTitle());
-//        assertEquals(content1, quest.getContent());
-//        assertEquals(capacity1, quest.getCategory());
-//        assertEquals(ntcId1, quest.getNtcId());
-//        assertEquals(registerTime1, quest.getRegisterTime());
+        String categoryName2 = "기능 테스트";
 
+        CategoryEntity categoryEntity2 = new CategoryEntity(categoryName2);
 
+        categoryRepository.save(categoryEntity1);
+        categoryRepository.save(categoryEntity2);
+
+        questRepository.save(new QuestEntity(
+                title1, content1, categoryEntity1, ntcId1, registerTime1, recruitmentTimeStart1, recruitmentTimeLimit1, durationTimeStart1, durationTimeLimit1, modifyTimeStart1, modifyTimeLimit1, capacity1, paymentPoint1
+        ));
+        questRepository.save(new QuestEntity(
+                title2, content2, categoryEntity2, ntcId2, registerTime2, recruitmentTimeStart2, recruitmentTimeLimit2, durationTimeStart2, durationTimeLimit2, modifyTimeStart2, modifyTimeLimit2, capacity2, paymentPoint2
+        ));
+
+        // when
+        List<QuestEntity> entityList = questRepository.findByCategoryName(categoryName1);
+        Quest quest = entityList.get(0).toDomain();
+
+        // then
+        assertEquals(1, entityList.size());
+        assertEquals(title1, quest.getTitle());
+        assertEquals(content1, quest.getContent());
+        assertEquals(categoryName1, quest.getCategory().getName());
+        assertEquals(ntcId1, quest.getNtcId());
+        assertEquals(registerTime1, quest.getRegisterTime());
     }
 
 }

@@ -1,6 +1,5 @@
 package io.wisoft.testermatchingplatform.web.dto.res;
 
-import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import lombok.Getter;
 
@@ -19,10 +18,10 @@ public class SummarizedQuestResponseDto {
     private Long capacity;
     private Long paymentPoint;
 
-    public SummarizedQuestResponseDto(Quest quest, Category category) {
+    public SummarizedQuestResponseDto(Quest quest) {
         this.id = quest.getId();
         this.title = quest.getTitle();
-        this.categoryName = category.getName();
+        this.categoryName = quest.getCategory().getName();
         this.registerTime = quest.getRegisterTime();
         this.recruitmentTimeLimit = quest.getRecruitmentTimeLimit();
         this.durationTimeStart = quest.getDurationTimeStart();

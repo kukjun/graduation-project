@@ -14,7 +14,7 @@ public class QuestEntity {
     // 기본키 매핑
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "title", nullable = false, length = 40)
@@ -103,6 +103,7 @@ public class QuestEntity {
 
     public Quest toDomain() {
         return new Quest(
+                this.id,
                 this.title,
                 this.content,
                 this.category.toDomain(),

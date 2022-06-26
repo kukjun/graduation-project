@@ -26,7 +26,8 @@ public class Quest {
     private String requireCondition;
     private String preferenceCondition;
 
-    public Quest(final String title,
+    public Quest(final Long id,
+                 final String title,
                  final String content,
                  final Category category,
                  final Long ntcId,
@@ -42,6 +43,7 @@ public class Quest {
                  final String requireCondition,
                  final String preferenceCondition
     ) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
