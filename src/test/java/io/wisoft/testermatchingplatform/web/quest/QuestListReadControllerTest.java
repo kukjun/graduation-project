@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.domain.quest.web;
+package io.wisoft.testermatchingplatform.web.quest;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;

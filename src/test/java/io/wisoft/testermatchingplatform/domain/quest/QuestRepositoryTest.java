@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.domain.quest.persistance;
+package io.wisoft.testermatchingplatform.domain.quest;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
@@ -113,6 +113,8 @@ class QuestRepositoryTest {
                 )
         );
     }
+
+
 
     @AfterEach
     public void cleanup() {
