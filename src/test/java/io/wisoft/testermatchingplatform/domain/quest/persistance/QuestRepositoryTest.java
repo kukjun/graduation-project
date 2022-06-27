@@ -2,13 +2,12 @@ package io.wisoft.testermatchingplatform.domain.quest.persistance;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
+import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
+import io.wisoft.testermatchingplatform.domain.ntc.NTCRepository;
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -29,56 +28,25 @@ class QuestRepositoryTest {
     private QuestRepository questRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private NTCRepository ntcRepository;
 
-    @AfterEach
-    public void cleanup() {
-        questRepository.deleteAll();
-    }
-
-    @Test
-    public void 퀘스트_전체_불러오기() {
-        // given
-        String title = "testTitle";
-        String content = "testContent";
-        String categoryName = "게임 테스트";
-        Long ntcId = 1L;
-        Timestamp registerTime = new Timestamp(System.currentTimeMillis());
-        Timestamp recruitmentTimeStart = new Timestamp(System.currentTimeMillis() + 20000);
-        Timestamp recruitmentTimeLimit = new Timestamp(System.currentTimeMillis() + 40000);
-        Timestamp durationTimeStart = new Timestamp(System.currentTimeMillis() + 60000);
-        Timestamp durationTimeLimit = new Timestamp(System.currentTimeMillis() + 80000);
-        Timestamp modifyTimeStart = new Timestamp(System.currentTimeMillis() + 100000);
-        Timestamp modifyTimeLimit = new Timestamp(System.currentTimeMillis() + 120000);
-        Long capacity = 1L;
-        Long paymentPoint = 1000L;
-
-        CategoryEntity categoryEntity = new CategoryEntity(categoryName);
-
-        categoryRepository.save(categoryEntity);
-
-        questRepository.save(new QuestEntity(
-                title, content, categoryEntity, ntcId, registerTime, recruitmentTimeStart, recruitmentTimeLimit, durationTimeStart, durationTimeLimit, modifyTimeStart, modifyTimeLimit, capacity, paymentPoint
-        ));
-
-        // when
-        List<QuestEntity> entityList = questRepository.findAllDesc();
-        Quest quest = entityList.get(0).toDomain();
-
-        // then
-        assertEquals(title, quest.getTitle());
-        assertEquals(content, quest.getContent());
-        assertEquals(categoryName, quest.getCategory().getName());
-        assertEquals(ntcId, quest.getNtcId());
-        assertEquals(registerTime, quest.getRegisterTime());
-
-    }
-
-    @Test
-    public void 카테고리_분류된_퀘스트_불러오기() {
+    @BeforeEach
+    public void setupData() {
         //given
+        String categoryName1 = "게임 테스트";
+        CategoryEntity categoryEntity1 = new CategoryEntity(categoryName1);
+        categoryRepository.save(categoryEntity1);
+
+
+        String ntcEmail1 = "kukjun@test.com";
+        String ntcNickname1 = "킹준";
+        String ntcPhoneNumber1 = "010-1234-8359";
+        NTCEntity ntcEntity1 = new NTCEntity(ntcEmail1, ntcNickname1, ntcPhoneNumber1);
+        ntcRepository.save(ntcEntity1);
+
         String title1 = "testTitle";
         String content1 = "testContent";
-        Long ntcId1 = 1L;
         Timestamp registerTime1 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart1 = new Timestamp(System.currentTimeMillis() + 20000);
         Timestamp recruitmentTimeLimit1 = new Timestamp(System.currentTimeMillis() + 40000);
@@ -88,14 +56,35 @@ class QuestRepositoryTest {
         Timestamp modifyTimeLimit1 = new Timestamp(System.currentTimeMillis() + 120000);
         Long capacity1 = 1L;
         Long paymentPoint1 = 1000L;
+        questRepository.save(new QuestEntity(
+                        title1,
+                        content1,
+                        categoryEntity1,
+                        ntcEntity1,
+                        registerTime1,
+                        recruitmentTimeStart1,
+                        recruitmentTimeLimit1,
+                        durationTimeStart1,
+                        durationTimeLimit1,
+                        modifyTimeStart1,
+                        modifyTimeLimit1,
+                        capacity1,
+                        paymentPoint1
+                )
+        );
 
-        String categoryName1 = "게임 테스트";
+        String categoryName2 = "기능 테스트";
+        CategoryEntity categoryEntity2 = new CategoryEntity(categoryName2);
+        categoryRepository.save(categoryEntity2);
 
-        CategoryEntity categoryEntity1 = new CategoryEntity(categoryName1);
+        String ntcEmail2 = "heyoung@test.com";
+        String ntcNickname2 = "킹희영";
+        String ntcPhoneNumber2 = "010-1234-5678";
+        NTCEntity ntcEntity2 = new NTCEntity(ntcEmail2, ntcNickname2, ntcPhoneNumber2);
+        ntcRepository.save(ntcEntity2);
 
         String title2 = "testTitle2";
         String content2 = "testContent2";
-        Long ntcId2 = 2L;
         Timestamp registerTime2 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart2 = new Timestamp(System.currentTimeMillis() + 20000);
         Timestamp recruitmentTimeLimit2 = new Timestamp(System.currentTimeMillis() + 40000);
@@ -106,19 +95,66 @@ class QuestRepositoryTest {
         Long capacity2 = 2L;
         Long paymentPoint2 = 2000L;
 
-        String categoryName2 = "기능 테스트";
-
-        CategoryEntity categoryEntity2 = new CategoryEntity(categoryName2);
-
-        categoryRepository.save(categoryEntity1);
-        categoryRepository.save(categoryEntity2);
 
         questRepository.save(new QuestEntity(
-                title1, content1, categoryEntity1, ntcId1, registerTime1, recruitmentTimeStart1, recruitmentTimeLimit1, durationTimeStart1, durationTimeLimit1, modifyTimeStart1, modifyTimeLimit1, capacity1, paymentPoint1
-        ));
-        questRepository.save(new QuestEntity(
-                title2, content2, categoryEntity2, ntcId2, registerTime2, recruitmentTimeStart2, recruitmentTimeLimit2, durationTimeStart2, durationTimeLimit2, modifyTimeStart2, modifyTimeLimit2, capacity2, paymentPoint2
-        ));
+                        title2,
+                        content2,
+                        categoryEntity2,
+                        ntcEntity2,
+                        registerTime2,
+                        recruitmentTimeStart2,
+                        recruitmentTimeLimit2,
+                        durationTimeStart2,
+                        durationTimeLimit2,
+                        modifyTimeStart2,
+                        modifyTimeLimit2,
+                        capacity2,
+                        paymentPoint2
+                )
+        );
+    }
+
+    @AfterEach
+    public void cleanup() {
+        questRepository.deleteAll();
+        categoryRepository.deleteAll();
+        ntcRepository.deleteAll();
+    }
+
+    @Test
+    public void 퀘스트_전체_불러오기() {
+        // given
+        String categoryName1 = "게임 테스트";
+
+        String ntcEmail1 = "kukjun@test.com";
+
+        String title1 = "testTitle";
+        String content1 = "testContent";
+
+
+        // when
+        List<QuestEntity> entityList = questRepository.findAllDesc();
+        Quest quest = entityList.get(1).toDomain();
+
+        // then
+        assertEquals(2, entityList.size());
+        assertEquals(title1, quest.getTitle());
+        assertEquals(content1, quest.getContent());
+        assertEquals(categoryName1, quest.getCategory().getName());
+        assertEquals(ntcEmail1, quest.getNtc().getEmail());
+
+    }
+
+    @Test
+    public void 카테고리_분류된_퀘스트_불러오기() {
+        //given
+        String categoryName1 = "게임 테스트";
+
+        String ntcEmail1 = "kukjun@test.com";
+
+        String title1 = "testTitle";
+        String content1 = "testContent";
+
 
         // when
         List<QuestEntity> entityList = questRepository.findByCategoryName(categoryName1);
@@ -129,8 +165,7 @@ class QuestRepositoryTest {
         assertEquals(title1, quest.getTitle());
         assertEquals(content1, quest.getContent());
         assertEquals(categoryName1, quest.getCategory().getName());
-        assertEquals(ntcId1, quest.getNtcId());
-        assertEquals(registerTime1, quest.getRegisterTime());
+        assertEquals(ntcEmail1, quest.getNtc().getEmail());
     }
 
 }
