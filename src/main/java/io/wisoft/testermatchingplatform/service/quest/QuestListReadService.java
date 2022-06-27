@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public class QuestListReadService {
 
     private final QuestRepository questRepository;
-    private final CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
     public List<SummarizedQuestResponseDto> findAllQuest() {
