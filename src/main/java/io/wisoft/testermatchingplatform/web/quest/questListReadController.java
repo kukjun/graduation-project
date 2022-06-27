@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.web.quest;
 
+import io.wisoft.testermatchingplatform.service.quest.QuestListReadService;
 import io.wisoft.testermatchingplatform.web.dto.res.SummarizedQuestResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +11,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class QuestListReadContrller {
+public class questListReadController {
 
-    private final io.wisoft.testermatchingplatform.service.quest.QuestListReadService questListReadService;
+    private final QuestListReadService questListReadService;
 
     @GetMapping("/quests")
     public List<SummarizedQuestResponseDto> findAllQuest() {
