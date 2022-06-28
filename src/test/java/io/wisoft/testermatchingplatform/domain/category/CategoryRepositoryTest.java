@@ -28,8 +28,6 @@ class CategoryRepositoryTest {
 
         String name2 = "기능 테스트";
         categoryRepository.save(new CategoryEntity(name2));
-
-
     }
 
     @AfterEach
