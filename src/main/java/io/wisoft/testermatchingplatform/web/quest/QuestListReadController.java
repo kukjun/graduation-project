@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class questListReadController {
+public class QuestListReadController {
 
     private final QuestListReadService questListReadService;
 
