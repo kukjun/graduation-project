@@ -2,7 +2,7 @@
 
 <br><br><br>
 
-# 진행상황
+## 진행상황
 - Quest 조회 가능
 - Quest 카테고리 조회 기능
 - Entity 생성 (NTC, Quest, Grade, Category, Tester)
