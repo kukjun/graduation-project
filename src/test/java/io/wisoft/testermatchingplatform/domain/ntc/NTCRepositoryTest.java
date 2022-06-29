@@ -24,15 +24,17 @@ class NTCRepositoryTest {
     public void dataSetup() {
         // given
         String ntcEmail1 = "kukjun@test.com";
+        String ntcPassword1 = "1234";
         String ntcNickname1 = "킹준";
         String ntcPhoneNumber1 = "010-1234-8359";
-        NTCEntity ntcEntity1 = new NTCEntity(ntcEmail1, ntcNickname1, ntcPhoneNumber1);
+        NTCEntity ntcEntity1 = new NTCEntity(ntcEmail1, ntcPassword1, ntcNickname1, ntcPhoneNumber1);
         ntcRepository.save(ntcEntity1);
 
         String ntcEmail2 = "heyoung@test.com";
+        String ntcPassword2 = "4321";
         String ntcNickname2 = "킹희영";
         String ntcPhoneNumber2 = "010-1234-5678";
-        NTCEntity ntcEntity2 = new NTCEntity(ntcEmail2, ntcNickname2, ntcPhoneNumber2);
+        NTCEntity ntcEntity2 = new NTCEntity(ntcEmail2, ntcPassword2, ntcNickname2, ntcPhoneNumber2);
         ntcRepository.save(ntcEntity2);
     }
 

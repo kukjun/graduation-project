@@ -15,14 +15,18 @@ public class NTCEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    public NTCEntity(String email, String nickname, String phoneNumber) {
+    public NTCEntity(String email, String password, String nickname, String phoneNumber) {
         this.email = email;
+        this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
     }
@@ -35,6 +39,7 @@ public class NTCEntity {
         return new NTC(
                 this.id,
                 this.email,
+                this.password,
                 this.nickname,
                 this.phoneNumber
         );
@@ -43,6 +48,7 @@ public class NTCEntity {
     public static NTCEntity from(final NTC ntc) {
         return new NTCEntity(
                 ntc.getEmail(),
+                ntc.getPassword(),
                 ntc.getNickname(),
                 ntc.getPhoneNumber()
         );
