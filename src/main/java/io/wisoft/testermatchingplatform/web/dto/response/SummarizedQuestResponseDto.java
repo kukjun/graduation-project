@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.web.dto.res;
+package io.wisoft.testermatchingplatform.web.dto.response;
 
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import lombok.Getter;

@@ -2,6 +2,7 @@ package io.wisoft.testermatchingplatform.domain.ntc;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
+import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,9 @@ class NTCRepositoryTest {
         String ntcPhoneNumber = "010-1234-8359";
 
         // when
-        NTC ntc = ntcRepository.findByEmail(ntcEmail).toDomain();
+        NTC ntc = ntcRepository.findByEmail(ntcEmail).orElseThrow(
+                () -> new EmailOverlapException(ntcEmail + "은 이미 가입된 이메일입니다.")
+        ).toDomain();
 
         // given
         assertEquals(ntcEmail, ntc.getEmail());
@@ -79,7 +82,8 @@ class NTCRepositoryTest {
         String ntcPhoneNumber = "010-1234-8359";
 
         // when
-        NTC ntc = ntcRepository.findByNickname(ntcNickname).toDomain();
+        // 예외 처리 추가
+        NTC ntc = ntcRepository.findByNickname(ntcNickname).get().toDomain();
 
         // given
         assertEquals(ntcEmail, ntc.getEmail());
