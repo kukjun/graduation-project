@@ -1,7 +1,7 @@
 package io.wisoft.testermatchingplatform.web.quest;
 
 import io.wisoft.testermatchingplatform.service.quest.QuestListReadService;
-import io.wisoft.testermatchingplatform.web.dto.res.SummarizedQuestResponseDto;
+import io.wisoft.testermatchingplatform.web.dto.response.SummarizedQuestResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
