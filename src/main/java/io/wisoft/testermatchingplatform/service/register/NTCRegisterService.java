@@ -18,13 +18,12 @@ public class NTCRegisterService {
 
     @Transactional
     public Long registerNTC(NTCRegisterRequest ntcRequest) {
-        ntcRepository.findByEmail(ntcRequest.getEmail()).orElseThrow(
-                () -> new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.")
-        );
-
-        ntcRepository.findByNickname(ntcRequest.getNickname()).orElseThrow(
-                () -> new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.")
-        );
+        if (ntcRepository.findByEmail(ntcRequest.getEmail()).isPresent()) {
+            new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.");
+        }
+        else if (ntcRepository.findByNickname(ntcRequest.getEmail()).isPresent()) {
+            new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.");
+        }
 
         return ntcRepository.save(ntcRequest.toEntity()).toDomain().getId();
 
