@@ -19,10 +19,10 @@ public class NTCRegisterService {
 
         // 예외 처리 하는 방법 공부 필요
       if (ntcRepository.findByEmail(ntcRequest.getEmail()).isPresent()) {
-            new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.");
+            throw new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.");
         }
         else if (ntcRepository.findByNickname(ntcRequest.getEmail()).isPresent()) {
-            new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.");
+            throw new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.");
         }
 
         return ntcRepository.save(ntcRequest.toEntity()).toDomain().getId();
