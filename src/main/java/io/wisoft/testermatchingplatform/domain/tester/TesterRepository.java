@@ -14,5 +14,8 @@ public interface TesterRepository extends JpaRepository<TesterEntity, Long> {
     @Query("SELECT t FROM TesterEntity t WHERE t.email = ?1")
     public Optional<TesterEntity> findByEmail(String email);
 
+    @Query("SELECT t FROM TesterEntity t WHERE t.nickname = ?1")
+    public Optional<TesterEntity> findByNickname(String nickname);
+
 
 }

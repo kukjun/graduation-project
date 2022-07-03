@@ -1,6 +1,8 @@
 package io.wisoft.testermatchingplatform.service.register;
 
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
+import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,11 @@ public class TesterRegisterService {
         // 예외 처리 하는 방법 필요
         // 동일 아이디 있으면 예외처리
         // 동일 닉네임 있으면 예외처리
-//        if(testerRepository.findByEmail(testerRequest.getEmail()).isPresent())
+        if(testerRepository.findByEmail(testerRequest.getEmail()).isPresent()) {
+            throw new EmailOverlapException(testerRequest.getEmail() + "은 이미 가입된 이메일입니다.");
+        } else if (testerRepository.findByNickname(testerRequest.getNickname()).isPresent()){
+            throw new NicknameOverlapException(testerRequest.getNickname() + "은 이미 가입된 닉네임입니다.");
+        }
 
     }
 
