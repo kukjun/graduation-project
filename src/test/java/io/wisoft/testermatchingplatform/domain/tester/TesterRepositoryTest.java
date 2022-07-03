@@ -123,7 +123,7 @@ class TesterRepositoryTest {
         assertEquals(testerPhoneNumber, tester.getPhoneNumber());
         assertEquals(testerIntroMessage, tester.getIntroMessage());
         assertEquals(testerIntroPictureReference, tester.getIntroPictureReference());
-        assertEquals(categoryRepository.findByName(categoryName).toDomain().getName(), tester.getPreferCategory().getName());
+        assertEquals(categoryRepository.findByName(categoryName).get().toDomain().getName(), tester.getPreferCategory().getName());
         assertEquals(gradeRepository.findByName(gradeName).toDomain().getName(), tester.getGrade().getName());
 
     }

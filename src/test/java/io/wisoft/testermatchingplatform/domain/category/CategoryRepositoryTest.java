@@ -52,7 +52,7 @@ class CategoryRepositoryTest {
         String name = "게임 테스트";
 
         // when
-        Category category = categoryRepository.findByName(name).toDomain();
+        Category category = categoryRepository.findByName(name).get().toDomain();
 
         // then
         assertEquals(name, category.getName());
