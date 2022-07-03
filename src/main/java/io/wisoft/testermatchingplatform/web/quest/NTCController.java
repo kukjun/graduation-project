@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class NTCRegisterController {
+public class NTCController {
 
     final NTCRegisterService ntcRegisterService;
 
     @Autowired
-    public NTCRegisterController(NTCRegisterService ntcRegisterService) {
+    public NTCController(NTCRegisterService ntcRegisterService) {
         this.ntcRegisterService = ntcRegisterService;
     }
 
