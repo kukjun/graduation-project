@@ -111,7 +111,7 @@ class TesterRepositoryTest {
         String gradeName = "실버";
 
         // when
-        Tester tester = testerRepository.findByEmail(testerEmail).toDomain();
+        Tester tester = testerRepository.findByEmail(testerEmail).get().toDomain();
 
         // then
         assertEquals(testerPhoneNumber, tester.getPhoneNumber());
