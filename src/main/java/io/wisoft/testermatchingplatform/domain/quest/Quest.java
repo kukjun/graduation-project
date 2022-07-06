@@ -21,8 +21,8 @@ public class Quest {
     private Timestamp durationTimeLimit;
     private Timestamp modifyTimeStart;
     private Timestamp modifyTimeLimit;
-    private Long capacity;
-    private Long paymentPoint;
+    private Long participantCapacity;
+    private Long reward;
     private String requireCondition;
     private String preferenceCondition;
 
@@ -38,8 +38,8 @@ public class Quest {
                  final Timestamp durationTimeLimit,
                  final Timestamp modifyTimeStart,
                  final Timestamp modifyTimeLimit,
-                 final Long capacity,
-                 final Long paymentPoint,
+                 final Long participantCapacity,
+                 final Long reward,
                  final String requireCondition,
                  final String preferenceCondition
     ) {
@@ -55,8 +55,8 @@ public class Quest {
         this.durationTimeLimit = durationTimeLimit;
         this.modifyTimeStart = modifyTimeStart;
         this.modifyTimeLimit = modifyTimeLimit;
-        this.capacity = capacity;
-        this.paymentPoint = paymentPoint;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
         this.requireCondition = requireCondition;
         this.preferenceCondition = preferenceCondition;
     }

@@ -1,10 +1,13 @@
 package io.wisoft.testermatchingplatform.domain.questmaker;
 
+import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "QUEST_MAKERS")
-public class QuestMakerEntity {
+public class QuestMakerEntity extends BaseTimeEntity {
 
     // 기본키 매핑
     @Id
@@ -23,6 +26,7 @@ public class QuestMakerEntity {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
 
     public QuestMakerEntity(String email, String password, String nickname, String phoneNumber) {
         this.email = email;

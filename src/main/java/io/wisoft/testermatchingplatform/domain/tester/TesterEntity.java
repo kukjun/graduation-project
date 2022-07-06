@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.tester;
 
+import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TESTERS")
-public class TesterEntity {
+public class TesterEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

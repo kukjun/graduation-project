@@ -27,9 +27,9 @@ public class QuestEntity {
     @ManyToOne
     private CategoryEntity category;
 
-    @JoinColumn(name = "ntc_id")
+    @JoinColumn(name = "quest_maker_id")
     @ManyToOne
-    private QuestMakerEntity ntc;
+    private QuestMakerEntity questMaker;
 
     @Column(name = "register_time", nullable = false)
     private Timestamp registerTime;
@@ -52,11 +52,11 @@ public class QuestEntity {
     @Column(name = "modify_time_limit", nullable = false)
     private Timestamp modifyTimeLimit;
 
-    @Column(name = "capacity", nullable = false)
-    private Long capacity;
+    @Column(name = "participant_capacity", nullable = false)
+    private Long participantCapacity;
 
-    @Column(name = "payment_point", nullable = false)
-    private Long paymentPoint;
+    @Column(name = "reward", nullable = false)
+    private Long reward;
 
     @Column(name = "require_condition")
     private String requireCondition;
@@ -64,11 +64,11 @@ public class QuestEntity {
     @Column(name = "preference_condition")
     private String preferenceCondition;
 
-    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity ntc, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long capacity, Long paymentPoint) {
+    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward) {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.ntc = ntc;
+        this.questMaker = questMaker;
         this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
         this.recruitmentTimeLimit = recruitmentTimeLimit;
@@ -76,8 +76,8 @@ public class QuestEntity {
         this.durationTimeLimit = durationTimeLimit;
         this.modifyTimeStart = modifyTimeStart;
         this.modifyTimeLimit = modifyTimeLimit;
-        this.capacity = capacity;
-        this.paymentPoint = paymentPoint;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
     }
 
     public QuestEntity() {
@@ -97,8 +97,8 @@ public class QuestEntity {
                 quest.getDurationTimeLimit(),
                 quest.getModifyTimeStart(),
                 quest.getModifyTimeLimit(),
-                quest.getCapacity(),
-                quest.getPaymentPoint()
+                quest.getParticipantCapacity(),
+                quest.getReward()
         );
     }
 
@@ -108,7 +108,7 @@ public class QuestEntity {
                 this.title,
                 this.content,
                 this.category.toDomain(),
-                this.ntc.toDomain(),
+                this.questMaker.toDomain(),
                 this.registerTime,
                 this.recruitmentTimeStart,
                 this.recruitmentTimeLimit,
@@ -116,8 +116,8 @@ public class QuestEntity {
                 this.durationTimeLimit,
                 this.modifyTimeStart,
                 this.modifyTimeLimit,
-                this.capacity,
-                this.paymentPoint,
+                this.participantCapacity,
+                this.reward,
                 this.requireCondition,
                 this.preferenceCondition
         );
