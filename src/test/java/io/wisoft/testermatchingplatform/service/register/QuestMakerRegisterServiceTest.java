@@ -30,7 +30,7 @@ class QuestMakerRegisterServiceTest {
     QuestMakerRepository questMakerRepository;
 
     @Test
-    public void ntc_회원_등록() {
+    public void questMaker_회원_등록() {
         //given
         QuestMakerRegisterRequest request = createNTCRequest();
         QuestMakerEntity questMakerEntity = createNTCEntity(request);

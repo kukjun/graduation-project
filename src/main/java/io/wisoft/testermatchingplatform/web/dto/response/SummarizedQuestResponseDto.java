@@ -2,27 +2,27 @@ package io.wisoft.testermatchingplatform.web.dto.response;
 
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.sql.Timestamp;
 
 @Getter
+@RequiredArgsConstructor
 public class SummarizedQuestResponseDto {
 
-    private Long id;
-    private String title;
-    private String categoryName;
-    private Timestamp registerTime;
-    private Timestamp recruitmentTimeLimit;
-    private Timestamp durationTimeStart;
-    private Timestamp durationTimeLimit;
-    private Long capacity;
-    private Long paymentPoint;
+    private final Long id;
+    private final String title;
+    private final String categoryName;
+    private final Timestamp recruitmentTimeLimit;
+    private final Timestamp durationTimeStart;
+    private final Timestamp durationTimeLimit;
+    private final Long capacity;
+    private final Long paymentPoint;
 
     public SummarizedQuestResponseDto(Quest quest) {
         this.id = quest.getId();
         this.title = quest.getTitle();
         this.categoryName = quest.getCategory().getName();
-        this.registerTime = quest.getRegisterTime();
         this.recruitmentTimeLimit = quest.getRecruitmentTimeLimit();
         this.durationTimeStart = quest.getDurationTimeStart();
         this.durationTimeLimit = quest.getDurationTimeLimit();

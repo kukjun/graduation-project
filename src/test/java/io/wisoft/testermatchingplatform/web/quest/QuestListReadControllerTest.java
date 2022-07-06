@@ -64,6 +64,7 @@ class QuestListReadControllerTest {
                 .webAppContextSetup(context)
                 .build();
     }
+
     @BeforeEach
     public void setupData() {
         //given
@@ -81,7 +82,6 @@ class QuestListReadControllerTest {
 
         String title1 = "testTitle";
         String content1 = "testContent";
-        Timestamp registerTime1 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart1 = new Timestamp(System.currentTimeMillis() + 20000);
         Timestamp recruitmentTimeLimit1 = new Timestamp(System.currentTimeMillis() + 40000);
         Timestamp durationTimeStart1 = new Timestamp(System.currentTimeMillis() + 60000);
@@ -94,8 +94,7 @@ class QuestListReadControllerTest {
                         title1,
                         content1,
                         categoryEntity1,
-                questMakerEntity1,
-                        registerTime1,
+                        questMakerEntity1,
                         recruitmentTimeStart1,
                         recruitmentTimeLimit1,
                         durationTimeStart1,
@@ -120,7 +119,6 @@ class QuestListReadControllerTest {
 
         String title2 = "testTitle2";
         String content2 = "testContent2";
-        Timestamp registerTime2 = new Timestamp(System.currentTimeMillis());
         Timestamp recruitmentTimeStart2 = new Timestamp(System.currentTimeMillis() + 20000);
         Timestamp recruitmentTimeLimit2 = new Timestamp(System.currentTimeMillis() + 40000);
         Timestamp durationTimeStart2 = new Timestamp(System.currentTimeMillis() + 60000);
@@ -135,8 +133,7 @@ class QuestListReadControllerTest {
                         title2,
                         content2,
                         categoryEntity2,
-                questMakerEntity2,
-                        registerTime2,
+                        questMakerEntity2,
                         recruitmentTimeStart2,
                         recruitmentTimeLimit2,
                         durationTimeStart2,
@@ -148,7 +145,6 @@ class QuestListReadControllerTest {
                 )
         );
     }
-
 
 
     @AfterEach
@@ -207,7 +203,7 @@ class QuestListReadControllerTest {
         ).andExpect(status().isOk());
 
         // then
-        List<SummarizedQuestResponseDto> dtoList = questListReadService.findToCategoryName(categoryName1);
+        List<SummarizedQuestResponseDto> dtoList = questListReadService.findByCategoryName(categoryName1);
         SummarizedQuestResponseDto result = dtoList.get(0);
 
         assertEquals(title1, result.getTitle());

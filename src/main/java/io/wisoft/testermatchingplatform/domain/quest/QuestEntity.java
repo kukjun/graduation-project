@@ -1,6 +1,7 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
 
+import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
 
@@ -9,7 +10,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "QUESTS")
-public class QuestEntity {
+public class QuestEntity extends BaseTimeEntity {
 
     // 기본키 매핑
     @Id
@@ -30,9 +31,6 @@ public class QuestEntity {
     @JoinColumn(name = "quest_maker_id")
     @ManyToOne
     private QuestMakerEntity questMaker;
-
-    @Column(name = "register_time", nullable = false)
-    private Timestamp registerTime;
 
     @Column(name = "recruitment_time_start", nullable = false)
     private Timestamp recruitmentTimeStart;
@@ -64,12 +62,11 @@ public class QuestEntity {
     @Column(name = "preference_condition")
     private String preferenceCondition;
 
-    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward) {
+    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward) {
         this.title = title;
         this.content = content;
         this.category = category;
         this.questMaker = questMaker;
-        this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
         this.recruitmentTimeLimit = recruitmentTimeLimit;
         this.durationTimeStart = durationTimeStart;
@@ -90,7 +87,6 @@ public class QuestEntity {
                 quest.getContent(),
                 CategoryEntity.from(quest.getCategory()),
                 QuestMakerEntity.from(quest.getQuestMaker()),
-                quest.getRegisterTime(),
                 quest.getRecruitmentTimeStart(),
                 quest.getRecruitmentTimeLimit(),
                 quest.getDurationTimeStart(),
@@ -109,7 +105,6 @@ public class QuestEntity {
                 this.content,
                 this.category.toDomain(),
                 this.questMaker.toDomain(),
-                this.registerTime,
                 this.recruitmentTimeStart,
                 this.recruitmentTimeLimit,
                 this.durationTimeStart,
