@@ -1,7 +1,5 @@
 package io.wisoft.testermatchingplatform.service.register;
 
-import io.wisoft.testermatchingplatform.domain.ntc.NTC;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
 import io.wisoft.testermatchingplatform.domain.ntc.NTCRepository;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
@@ -17,14 +15,15 @@ public class NTCRegisterService {
     private final NTCRepository ntcRepository;
 
     @Transactional
-    public Long registerNTC(NTCRegisterRequest ntcRequest) {
-        ntcRepository.findByEmail(ntcRequest.getEmail()).orElseThrow(
-                () -> new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.")
-        );
+    public Long registerNTC(NTCRegisterRequest ntcRequest){
 
-        ntcRepository.findByNickname(ntcRequest.getNickname()).orElseThrow(
-                () -> new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.")
-        );
+        // 예외 처리 하는 방법 공부 필요
+      if (ntcRepository.findByEmail(ntcRequest.getEmail()).isPresent()) {
+            throw new EmailOverlapException(ntcRequest.getEmail() + "은 이미 가입된 이메일입니다.");
+        }
+        else if (ntcRepository.findByNickname(ntcRequest.getEmail()).isPresent()) {
+            throw new NicknameOverlapException(ntcRequest.getNickname() + "은 이미 기입된 닉네임입니다.");
+        }
 
         return ntcRepository.save(ntcRequest.toEntity()).toDomain().getId();
 
