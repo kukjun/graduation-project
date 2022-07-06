@@ -26,8 +26,8 @@ public class SummarizedQuestResponseDto {
         this.recruitmentTimeLimit = quest.getRecruitmentTimeLimit();
         this.durationTimeStart = quest.getDurationTimeStart();
         this.durationTimeLimit = quest.getDurationTimeLimit();
-        this.capacity = quest.getCapacity();
-        this.paymentPoint = quest.getPaymentPoint();
+        this.capacity = quest.getParticipantCapacity();
+        this.paymentPoint = quest.getReward();
     }
 
 

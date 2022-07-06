@@ -1,9 +1,9 @@
 package io.wisoft.testermatchingplatform.service.register;
 
-import io.wisoft.testermatchingplatform.domain.ntc.NTC;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCRepository;
-import io.wisoft.testermatchingplatform.web.dto.request.NTCRegisterRequest;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
+import io.wisoft.testermatchingplatform.web.dto.request.QuestMakerRegisterRequest;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -21,42 +21,42 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class NTCRegisterServiceTest {
+class QuestMakerRegisterServiceTest {
 
     @InjectMocks
-    NTCRegisterService ntcRegisterService;
+    QuestMakerRegisterService questMakerRegisterService;
 
     @Mock
-    NTCRepository ntcRepository;
+    QuestMakerRepository questMakerRepository;
 
     @Test
     public void ntc_회원_등록() {
         //given
-        NTCRegisterRequest request = createNTCRequest();
-        NTCEntity ntcEntity = createNTCEntity(request);
+        QuestMakerRegisterRequest request = createNTCRequest();
+        QuestMakerEntity questMakerEntity = createNTCEntity(request);
 
         Long fakeNTCId = 1L;
-        ReflectionTestUtils.setField(ntcEntity, "id", fakeNTCId);
+        ReflectionTestUtils.setField(questMakerEntity, "id", fakeNTCId);
 
         //mocking
-        given(ntcRepository.save(any()))
-                .willReturn(ntcEntity);
-        given(ntcRepository.findById(fakeNTCId))
-                .willReturn(Optional.ofNullable(ntcEntity));
+        given(questMakerRepository.save(any()))
+                .willReturn(questMakerEntity);
+        given(questMakerRepository.findById(fakeNTCId))
+                .willReturn(Optional.ofNullable(questMakerEntity));
 
         //when
-        Long newNTCId = ntcRegisterService.registerNTC(request);
+        Long newNTCId = questMakerRegisterService.registerNTC(request);
 
         //then
-        NTCEntity findNTCEntity = ntcRepository.findById(newNTCId).get();
+        QuestMakerEntity findQuestMakerEntity = questMakerRepository.findById(newNTCId).get();
 
-        NTC ntc = ntcEntity.toDomain();
-        NTC findNTC = findNTCEntity.toDomain();
+        QuestMaker questMaker = questMakerEntity.toDomain();
+        QuestMaker findQuestMaker = findQuestMakerEntity.toDomain();
 
-        assertEquals(ntc.getId(), findNTC.getId());
-        assertEquals(ntc.getPassword(), findNTC.getPassword());
-        assertEquals(ntc.getEmail(), findNTC.getEmail());
-        assertEquals(ntc.getPhoneNumber(), findNTC.getPhoneNumber());
+        assertEquals(questMaker.getId(), findQuestMaker.getId());
+        assertEquals(questMaker.getPassword(), findQuestMaker.getPassword());
+        assertEquals(questMaker.getEmail(), findQuestMaker.getEmail());
+        assertEquals(questMaker.getPhoneNumber(), findQuestMaker.getPhoneNumber());
 
     }
 
@@ -84,8 +84,8 @@ class NTCRegisterServiceTest {
 //
 //    }
 
-    private NTCEntity createNTCEntity(NTCRegisterRequest request) {
-        return new NTCEntity(
+    private QuestMakerEntity createNTCEntity(QuestMakerRegisterRequest request) {
+        return new QuestMakerEntity(
                 request.getEmail(),
                 request.getPassword(),
                 request.getNickname(),
@@ -93,8 +93,8 @@ class NTCRegisterServiceTest {
         );
     }
 
-    private NTCRegisterRequest createNTCRequest() {
-        return new NTCRegisterRequest(
+    private QuestMakerRegisterRequest createNTCRequest() {
+        return new QuestMakerRegisterRequest(
                 "kukjun@naver.com", "12341234", "imKing", "010-1234-5678"
         );
     }

@@ -1,8 +1,7 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
 import io.wisoft.testermatchingplatform.domain.category.Category;
-import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTC;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import lombok.Getter;
 
 import java.sql.Timestamp;
@@ -14,7 +13,7 @@ public class Quest {
     private String title;
     private String content;
     private Category category;
-    private NTC ntc;
+    private QuestMaker questMaker;
     private Timestamp registerTime;
     private Timestamp recruitmentTimeStart;
     private Timestamp recruitmentTimeLimit;
@@ -22,8 +21,8 @@ public class Quest {
     private Timestamp durationTimeLimit;
     private Timestamp modifyTimeStart;
     private Timestamp modifyTimeLimit;
-    private Long capacity;
-    private Long paymentPoint;
+    private Long participantCapacity;
+    private Long reward;
     private String requireCondition;
     private String preferenceCondition;
 
@@ -31,7 +30,7 @@ public class Quest {
                  final String title,
                  final String content,
                  final Category category,
-                 final NTC ntc,
+                 final QuestMaker questMaker,
                  final Timestamp registerTime,
                  final Timestamp recruitmentTimeStart,
                  final Timestamp recruitmentTimeLimit,
@@ -39,8 +38,8 @@ public class Quest {
                  final Timestamp durationTimeLimit,
                  final Timestamp modifyTimeStart,
                  final Timestamp modifyTimeLimit,
-                 final Long capacity,
-                 final Long paymentPoint,
+                 final Long participantCapacity,
+                 final Long reward,
                  final String requireCondition,
                  final String preferenceCondition
     ) {
@@ -48,7 +47,7 @@ public class Quest {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.ntc = ntc;
+        this.questMaker = questMaker;
         this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
         this.recruitmentTimeLimit = recruitmentTimeLimit;
@@ -56,8 +55,8 @@ public class Quest {
         this.durationTimeLimit = durationTimeLimit;
         this.modifyTimeStart = modifyTimeStart;
         this.modifyTimeLimit = modifyTimeLimit;
-        this.capacity = capacity;
-        this.paymentPoint = paymentPoint;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
         this.requireCondition = requireCondition;
         this.preferenceCondition = preferenceCondition;
     }
