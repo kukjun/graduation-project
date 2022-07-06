@@ -3,19 +3,19 @@ package io.wisoft.testermatchingplatform.service.register;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
-import io.wisoft.testermatchingplatform.web.dto.request.NTCRegisterRequest;
+import io.wisoft.testermatchingplatform.web.dto.request.QuestMakerRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class NTCRegisterService {
+public class QuestMakerRegisterService {
 
     private final QuestMakerRepository questMakerRepository;
 
     @Transactional
-    public Long registerNTC(NTCRegisterRequest ntcRequest){
+    public Long registerNTC(QuestMakerRegisterRequest ntcRequest){
 
         // 예외 처리 하는 방법 공부 필요
       if (questMakerRepository.findByEmail(ntcRequest.getEmail()).isPresent()) {

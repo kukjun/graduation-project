@@ -3,7 +3,7 @@ package io.wisoft.testermatchingplatform.service.register;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
-import io.wisoft.testermatchingplatform.web.dto.request.NTCRegisterRequest;
+import io.wisoft.testermatchingplatform.web.dto.request.QuestMakerRegisterRequest;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import static org.mockito.BDDMockito.given;
 class QuestMakerRegisterServiceTest {
 
     @InjectMocks
-    NTCRegisterService ntcRegisterService;
+    QuestMakerRegisterService questMakerRegisterService;
 
     @Mock
     QuestMakerRepository questMakerRepository;
@@ -32,7 +32,7 @@ class QuestMakerRegisterServiceTest {
     @Test
     public void ntc_회원_등록() {
         //given
-        NTCRegisterRequest request = createNTCRequest();
+        QuestMakerRegisterRequest request = createNTCRequest();
         QuestMakerEntity questMakerEntity = createNTCEntity(request);
 
         Long fakeNTCId = 1L;
@@ -45,7 +45,7 @@ class QuestMakerRegisterServiceTest {
                 .willReturn(Optional.ofNullable(questMakerEntity));
 
         //when
-        Long newNTCId = ntcRegisterService.registerNTC(request);
+        Long newNTCId = questMakerRegisterService.registerNTC(request);
 
         //then
         QuestMakerEntity findQuestMakerEntity = questMakerRepository.findById(newNTCId).get();
@@ -84,7 +84,7 @@ class QuestMakerRegisterServiceTest {
 //
 //    }
 
-    private QuestMakerEntity createNTCEntity(NTCRegisterRequest request) {
+    private QuestMakerEntity createNTCEntity(QuestMakerRegisterRequest request) {
         return new QuestMakerEntity(
                 request.getEmail(),
                 request.getPassword(),
@@ -93,8 +93,8 @@ class QuestMakerRegisterServiceTest {
         );
     }
 
-    private NTCRegisterRequest createNTCRequest() {
-        return new NTCRegisterRequest(
+    private QuestMakerRegisterRequest createNTCRequest() {
+        return new QuestMakerRegisterRequest(
                 "kukjun@naver.com", "12341234", "imKing", "010-1234-5678"
         );
     }

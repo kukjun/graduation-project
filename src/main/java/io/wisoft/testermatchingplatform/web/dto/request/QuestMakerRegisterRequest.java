@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class NTCRegisterRequest {
+public class QuestMakerRegisterRequest {
     private final String email;
     private final String password;
     private final String nickname;
