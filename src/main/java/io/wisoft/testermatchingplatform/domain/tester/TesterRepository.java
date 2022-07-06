@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TesterRepository extends JpaRepository<TesterEntity, Long> {
 
@@ -11,7 +12,10 @@ public interface TesterRepository extends JpaRepository<TesterEntity, Long> {
     public List<TesterEntity> findAllDesc();
 
     @Query("SELECT t FROM TesterEntity t WHERE t.email = ?1")
-    public TesterEntity findByEmail(String email);
+    public Optional<TesterEntity> findByEmail(String email);
+
+    @Query("SELECT t FROM TesterEntity t WHERE t.nickname = ?1")
+    public Optional<TesterEntity> findByNickname(String nickname);
 
 
 }
