@@ -142,7 +142,7 @@ class QuestRepositoryTest {
         assertEquals(title1, quest.getTitle());
         assertEquals(content1, quest.getContent());
         assertEquals(categoryName1, quest.getCategory().getName());
-        assertEquals(ntcEmail1, quest.getNtc().getEmail());
+        assertEquals(ntcEmail1, quest.getQuestMaker().getEmail());
 
     }
 
@@ -166,7 +166,7 @@ class QuestRepositoryTest {
         assertEquals(title1, quest.getTitle());
         assertEquals(content1, quest.getContent());
         assertEquals(categoryName1, quest.getCategory().getName());
-        assertEquals(ntcEmail1, quest.getNtc().getEmail());
+        assertEquals(ntcEmail1, quest.getQuestMaker().getEmail());
     }
 
 }
