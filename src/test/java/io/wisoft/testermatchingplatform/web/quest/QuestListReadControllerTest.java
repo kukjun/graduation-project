@@ -1,8 +1,8 @@
 package io.wisoft.testermatchingplatform.web.quest;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCRepository;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
 import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.service.quest.QuestListReadService;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
@@ -51,7 +51,7 @@ class QuestListReadControllerTest {
     private CategoryRepository categoryRepository;
 
     @Autowired
-    private NTCRepository ntcRepository;
+    private QuestMakerRepository questMakerRepository;
 
     @Autowired
     private WebApplicationContext context;
@@ -76,8 +76,8 @@ class QuestListReadControllerTest {
         String ntcNickname1 = "킹준";
         String ntcPassword1 = "1234";
         String ntcPhoneNumber1 = "010-1234-8359";
-        NTCEntity ntcEntity1 = new NTCEntity(ntcEmail1, ntcPassword1, ntcNickname1, ntcPhoneNumber1);
-        ntcRepository.save(ntcEntity1);
+        QuestMakerEntity questMakerEntity1 = new QuestMakerEntity(ntcEmail1, ntcPassword1, ntcNickname1, ntcPhoneNumber1);
+        questMakerRepository.save(questMakerEntity1);
 
         String title1 = "testTitle";
         String content1 = "testContent";
@@ -94,7 +94,7 @@ class QuestListReadControllerTest {
                         title1,
                         content1,
                         categoryEntity1,
-                        ntcEntity1,
+                questMakerEntity1,
                         registerTime1,
                         recruitmentTimeStart1,
                         recruitmentTimeLimit1,
@@ -115,8 +115,8 @@ class QuestListReadControllerTest {
         String ntcPassword2 = "4321";
         String ntcNickname2 = "킹희영";
         String ntcPhoneNumber2 = "010-1234-5678";
-        NTCEntity ntcEntity2 = new NTCEntity(ntcEmail2, ntcPassword2, ntcNickname2, ntcPhoneNumber2);
-        ntcRepository.save(ntcEntity2);
+        QuestMakerEntity questMakerEntity2 = new QuestMakerEntity(ntcEmail2, ntcPassword2, ntcNickname2, ntcPhoneNumber2);
+        questMakerRepository.save(questMakerEntity2);
 
         String title2 = "testTitle2";
         String content2 = "testContent2";
@@ -135,7 +135,7 @@ class QuestListReadControllerTest {
                         title2,
                         content2,
                         categoryEntity2,
-                        ntcEntity2,
+                questMakerEntity2,
                         registerTime2,
                         recruitmentTimeStart2,
                         recruitmentTimeLimit2,
@@ -156,7 +156,7 @@ class QuestListReadControllerTest {
         // 연관관계 중요, categoryRepository 먼저 지우면 안됨!!
         questRepository.deleteAll();
         categoryRepository.deleteAll();
-        ntcRepository.deleteAll();
+        questMakerRepository.deleteAll();
     }
 
     @Test
