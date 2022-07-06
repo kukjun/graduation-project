@@ -1,7 +1,7 @@
 package io.wisoft.testermatchingplatform.web.dto.request;
 
 
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -13,8 +13,8 @@ public class NTCRegisterRequest {
     private final String nickname;
     private final String phoneNumber;
 
-    public NTCEntity toEntity() {
-        return new NTCEntity(
+    public QuestMakerEntity toEntity() {
+        return new QuestMakerEntity(
                 getEmail(),
                 getPassword(),
                 getNickname(),

@@ -1,10 +1,8 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
 
-import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTC;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -31,7 +29,7 @@ public class QuestEntity {
 
     @JoinColumn(name = "ntc_id")
     @ManyToOne
-    private NTCEntity ntc;
+    private QuestMakerEntity ntc;
 
     @Column(name = "register_time", nullable = false)
     private Timestamp registerTime;
@@ -66,7 +64,7 @@ public class QuestEntity {
     @Column(name = "preference_condition")
     private String preferenceCondition;
 
-    public QuestEntity(String title, String content, CategoryEntity category, NTCEntity ntc, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long capacity, Long paymentPoint) {
+    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity ntc, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long capacity, Long paymentPoint) {
         this.title = title;
         this.content = content;
         this.category = category;
@@ -91,7 +89,7 @@ public class QuestEntity {
                 quest.getTitle(),
                 quest.getContent(),
                 CategoryEntity.from(quest.getCategory()),
-                NTCEntity.from(quest.getNtc()),
+                QuestMakerEntity.from(quest.getQuestMaker()),
                 quest.getRegisterTime(),
                 quest.getRecruitmentTimeStart(),
                 quest.getRecruitmentTimeLimit(),

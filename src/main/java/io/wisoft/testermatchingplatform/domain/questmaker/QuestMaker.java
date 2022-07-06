@@ -1,20 +1,20 @@
-package io.wisoft.testermatchingplatform.domain.ntc;
+package io.wisoft.testermatchingplatform.domain.questmaker;
 
 import lombok.Getter;
 
 @Getter
-public class NTC {
+public class QuestMaker {
     private Long id;
     private String email;
     private String password;
     private String nickname;
     private String phoneNumber;
 
-    public NTC(final Long id,
-               final String email,
-               final String password,
-               final String nickname,
-               final String phoneNumber
+    public QuestMaker(final Long id,
+                      final String email,
+                      final String password,
+                      final String nickname,
+                      final String phoneNumber
     ) {
         this.id = id;
         this.email = email;

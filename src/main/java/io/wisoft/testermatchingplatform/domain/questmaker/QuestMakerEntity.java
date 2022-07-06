@@ -1,10 +1,10 @@
-package io.wisoft.testermatchingplatform.domain.ntc;
+package io.wisoft.testermatchingplatform.domain.questmaker;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "NTCS")
-public class NTCEntity {
+@Table(name = "QUEST_MAKERS")
+public class QuestMakerEntity {
 
     // 기본키 매핑
     @Id
@@ -24,19 +24,19 @@ public class NTCEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    public NTCEntity(String email, String password, String nickname, String phoneNumber) {
+    public QuestMakerEntity(String email, String password, String nickname, String phoneNumber) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
     }
 
-    public NTCEntity() {
+    public QuestMakerEntity() {
 
     }
 
-    public NTC toDomain() {
-        return new NTC(
+    public QuestMaker toDomain() {
+        return new QuestMaker(
                 this.id,
                 this.email,
                 this.password,
@@ -45,12 +45,12 @@ public class NTCEntity {
         );
     }
 
-    public static NTCEntity from(final NTC ntc) {
-        return new NTCEntity(
-                ntc.getEmail(),
-                ntc.getPassword(),
-                ntc.getNickname(),
-                ntc.getPhoneNumber()
+    public static QuestMakerEntity from(final QuestMaker questMaker) {
+        return new QuestMakerEntity(
+                questMaker.getEmail(),
+                questMaker.getPassword(),
+                questMaker.getNickname(),
+                questMaker.getPhoneNumber()
         );
     }
 
