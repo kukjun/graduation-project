@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.web.quest;
+package io.wisoft.testermatchingplatform.web.tester;
 
 import io.wisoft.testermatchingplatform.service.TesterManageService;
 import io.wisoft.testermatchingplatform.service.register.TesterRegisterService;
@@ -40,13 +40,13 @@ public class TesterController {
         return testerManageService.loginTester(testerLoginRequest);
     }
 
-    @GetMapping("testers")
-    public DetailTesterResponse getTesterInformation(@RequestParam("tester_id") Long testerId) {
+    @GetMapping("testers/{tester_id}")
+    public DetailTesterResponse getTesterInformation(@PathVariable("tester_id") Long testerId) {
         return testerManageService.findByTesterId(testerId);
     }
 
-    @PatchMapping("testers")
-    public Long updateTester(@RequestBody TesterUpdateRequest testerUpdateRequest) {
+    @PatchMapping("testers/{tester_id}")
+    public Long updateTester(@PathVariable("tester_id") TesterUpdateRequest testerUpdateRequest) {
         return testerManageService.updateTester(testerUpdateRequest);
     }
 
