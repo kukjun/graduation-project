@@ -27,9 +27,4 @@ public class Tester {
         this.grade = grade;
     }
 
-    // 테스터 확인 로직이 필요함.
-    // id 가 같은 경우, password 도 일치하는지 확인하는 메서드 필요
-
-
-
 }
