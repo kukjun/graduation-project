@@ -41,6 +41,16 @@ public class QuestListReadService {
     }
 
     @Transactional(readOnly = true)
+    public List<SummarizedQuestResponseDto> findByCategoryId(Long categoryId) {
+
+        return questRepository.findByCategoryId(categoryId).stream()
+                .map(Optional::get)
+                .map(QuestEntity::toDomain)
+                .map(SummarizedQuestResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
     public DetailQuestResponseDto findById(Long id) {
         return new DetailQuestResponseDto(
                 questRepository.findById(id).orElseThrow(

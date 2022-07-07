@@ -179,8 +179,8 @@ class QuestListReadControllerTest {
         assertEquals(2L, result.getId());
         assertEquals(title1, result.getTitle());
         assertEquals(categoryName1, result.getCategoryName());
-        assertEquals(capacity1, result.getCapacity());
-        assertEquals(paymentPoint1, result.getPaymentPoint());
+        assertEquals(capacity1, result.getParticipantCapacity());
+        assertEquals(paymentPoint1, result.getReward());
 
     }
 
@@ -208,8 +208,8 @@ class QuestListReadControllerTest {
 
         assertEquals(title1, result.getTitle());
         assertEquals(categoryName1, result.getCategoryName());
-        assertEquals(capacity1, result.getCapacity());
-        assertEquals(paymentPoint1, result.getPaymentPoint());
+        assertEquals(capacity1, result.getParticipantCapacity());
+        assertEquals(paymentPoint1, result.getReward());
 
 
     }

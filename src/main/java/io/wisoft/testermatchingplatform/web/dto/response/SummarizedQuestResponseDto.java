@@ -16,8 +16,8 @@ public class SummarizedQuestResponseDto {
     private final Timestamp recruitmentTimeLimit;
     private final Timestamp durationTimeStart;
     private final Timestamp durationTimeLimit;
-    private final Long capacity;
-    private final Long paymentPoint;
+    private final Long participantCapacity;
+    private final Long reward;
 
     public SummarizedQuestResponseDto(Quest quest) {
         this.id = quest.getId();
@@ -26,8 +26,8 @@ public class SummarizedQuestResponseDto {
         this.recruitmentTimeLimit = quest.getRecruitmentTimeLimit();
         this.durationTimeStart = quest.getDurationTimeStart();
         this.durationTimeLimit = quest.getDurationTimeLimit();
-        this.capacity = quest.getParticipantCapacity();
-        this.paymentPoint = quest.getReward();
+        this.participantCapacity = quest.getParticipantCapacity();
+        this.reward = quest.getReward();
     }
 
 

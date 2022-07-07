@@ -62,6 +62,41 @@ public class QuestEntity extends BaseTimeEntity {
     @Column(name = "preference_condition")
     private String preferenceCondition;
 
+    public QuestEntity(Long id, String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward, String requireCondition, String preferenceCondition) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.questMaker = questMaker;
+        this.recruitmentTimeStart = recruitmentTimeStart;
+        this.recruitmentTimeLimit = recruitmentTimeLimit;
+        this.durationTimeStart = durationTimeStart;
+        this.durationTimeLimit = durationTimeLimit;
+        this.modifyTimeStart = modifyTimeStart;
+        this.modifyTimeLimit = modifyTimeLimit;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
+        this.requireCondition = requireCondition;
+        this.preferenceCondition = preferenceCondition;
+    }
+
+    public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward, String requireCondition, String preferenceCondition) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.questMaker = questMaker;
+        this.recruitmentTimeStart = recruitmentTimeStart;
+        this.recruitmentTimeLimit = recruitmentTimeLimit;
+        this.durationTimeStart = durationTimeStart;
+        this.durationTimeLimit = durationTimeLimit;
+        this.modifyTimeStart = modifyTimeStart;
+        this.modifyTimeLimit = modifyTimeLimit;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
+        this.requireCondition = requireCondition;
+        this.preferenceCondition = preferenceCondition;
+    }
+
     public QuestEntity(String title, String content, CategoryEntity category, QuestMakerEntity questMaker, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, Long participantCapacity, Long reward) {
         this.title = title;
         this.content = content;

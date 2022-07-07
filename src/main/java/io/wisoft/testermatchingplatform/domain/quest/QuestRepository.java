@@ -16,4 +16,7 @@ public interface QuestRepository extends JpaRepository<QuestEntity, Long> {
 
     @Query("SELECT q FROM QuestEntity q WHERE q.category.name=?1 ORDER BY q.id DESC")
     List<Optional<QuestEntity>> findByCategoryName(final String categoryName);
+
+    @Query("SELECT q FROM QuestEntity q WHERE q.category.id=?1 ORDER BY q.id DESC")
+    List<Optional<QuestEntity>> findByCategoryId(final Long categoryId);
 }
