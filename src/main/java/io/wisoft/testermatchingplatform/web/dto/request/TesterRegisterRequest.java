@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TesterRegisterRequest {
     private String email;
+    private String password;
     private String nickname;
     private String phoneNumber;
     private String preferCategoryName;
     private String introMessage;
     private String introPictureReference;
+
 }

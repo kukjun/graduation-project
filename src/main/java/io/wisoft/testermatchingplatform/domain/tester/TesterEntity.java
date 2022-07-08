@@ -18,6 +18,9 @@ public class TesterEntity extends BaseTimeEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
@@ -38,8 +41,9 @@ public class TesterEntity extends BaseTimeEntity {
     @ManyToOne
     private GradeEntity grade;
 
-    public TesterEntity(String email, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureReference, GradeEntity grade) {
+    public TesterEntity(String email, String password, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureReference, GradeEntity grade) {
         this.email = email;
+        this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
         this.preferCategory = preferCategory;
@@ -56,6 +60,7 @@ public class TesterEntity extends BaseTimeEntity {
         return new Tester(
                 this.id,
                 this.email,
+                this.password,
                 this.nickname,
                 this.phoneNumber,
                 this.preferCategory.toDomain(),
@@ -65,9 +70,21 @@ public class TesterEntity extends BaseTimeEntity {
         );
     }
 
+    // 추가 로직, Tester를 TesterEntity와 맞추어 주는 과정 필요
+    public void SynchronizeFromDomain(Tester tester) {
+        this.email = tester.getEmail();
+        this.password = tester.getPassword();
+        this.nickname = tester.getNickname();
+        this.phoneNumber = tester.getPhoneNumber();
+        this.preferCategory = CategoryEntity.from(tester.getPreferCategory());
+        this.introMessage = tester.getIntroMessage();
+        this.introPictureReference = tester.getIntroPictureReference();
+    }
+
     public static TesterEntity from(Tester tester) {
         return new TesterEntity(
                 tester.getEmail(),
+                tester.getPassword(),
                 tester.getNickname(),
                 tester.getPhoneNumber(),
                 CategoryEntity.from(tester.getPreferCategory()),

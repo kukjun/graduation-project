@@ -1,11 +1,13 @@
-package io.wisoft.testermatchingplatform.service.register;
+package io.wisoft.testermatchingplatform.service.tester;
 
-import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
+import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
-import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
+import io.wisoft.testermatchingplatform.domain.grade.Grade;
 import io.wisoft.testermatchingplatform.domain.grade.GradeRepository;
+import io.wisoft.testermatchingplatform.domain.tester.Tester;
 import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
+import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterRegisterRequest;
@@ -43,23 +45,25 @@ public class TesterRegisterService {
         }
 
         // 선택한 카테고리가 목록에 없음
-        CategoryEntity categoryEntity = categoryRepository.findByName(testerRequest.getPreferCategoryName())
-                .orElseThrow();
+        Category categoryDomain = categoryRepository.findByName(testerRequest.getPreferCategoryName())
+                .orElseThrow(
+                        () -> new CategoryNotFoundException(testerRequest.getPreferCategoryName() + "인 카테고리가 없음")
+                ).toDomain();
         // 선택한 등급을 알기 쉽도록 enum 사용
-        GradeEntity gradeEntity = gradeRepository.findByName("Level1");
+        Grade gradeDomain = gradeRepository.findByName("Level1").toDomain();
 
-
-        TesterEntity testerEntity = new TesterEntity(
+        Tester tester = new Tester(
                 testerRequest.getEmail(),
+                testerRequest.getPassword(),
                 testerRequest.getNickname(),
                 testerRequest.getPhoneNumber(),
-                categoryEntity,
+                categoryDomain,
                 testerRequest.getIntroMessage(),
                 testerRequest.getIntroPictureReference(),
-                gradeEntity
+                gradeDomain
         );
 
-        return testerRepository.save(testerEntity).toDomain().getId();
+        return testerRepository.save(TesterEntity.from(tester)).toDomain().getId();
 
     }
 

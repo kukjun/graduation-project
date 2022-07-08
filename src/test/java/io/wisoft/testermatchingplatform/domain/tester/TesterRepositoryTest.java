@@ -53,12 +53,14 @@ class TesterRepositoryTest {
         categoryRepository.save(categoryEntity2);
 
         String testerEmail1 = "kukjun@naver.com";
+        String testerPassword1 = "1234";
         String testerNickname1 = "kingJun";
         String testerPhoneNumber1 = "010-1234-2345";
         String testerIntroMessage1 = "안녕하세요!!";
         String testerIntroPictureReference1 = "사진 링크1";
         TesterEntity testerEntity1 = new TesterEntity(
                 testerEmail1,
+                testerPassword1,
                 testerNickname1,
                 testerPhoneNumber1,
                 categoryEntity1,
@@ -69,12 +71,14 @@ class TesterRepositoryTest {
         testerRepository.save(testerEntity1);
 
         String testerEmail2 = "heeyoung@naver.com";
+        String testerPassword2 = "1234";
         String testerNickname2 = "kingyong";
         String testerPhoneNumber2 = "010-4321-9876";
         String testerIntroMessage2 = "안녕희세용!!";
         String testerIntroPictureReference2 = "사진 링크2";
         TesterEntity testerEntity2 = new TesterEntity(
                 testerEmail2,
+                testerPassword2,
                 testerNickname2,
                 testerPhoneNumber2,
                 categoryEntity2,

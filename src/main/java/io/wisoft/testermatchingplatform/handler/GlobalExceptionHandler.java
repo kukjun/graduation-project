@@ -1,8 +1,6 @@
 package io.wisoft.testermatchingplatform.handler;
 
-import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
-import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
-import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.*;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,13 +37,30 @@ public class GlobalExceptionHandler {
                 .body(errorResponse);
     }
 
+    @ExceptionHandler(EmailNotEqualException.class)
+    public ResponseEntity<ErrorResponse> emailNotEqual(final EmailNotEqualException e) {
+        ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(PasswordNotEqualException.class)
+    public ResponseEntity<ErrorResponse> passwordNotEqual(final PasswordNotEqualException e) {
+        ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(errorResponse);
+    }
+
+
     private ErrorResponse generateErrorResponseWithMessage(String errorMessage) {
         final ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.add(errorMessage);
         return errorResponse;
     }
-}
 
+}
 
 @Getter
 class ErrorResponse {
