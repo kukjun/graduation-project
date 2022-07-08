@@ -14,7 +14,6 @@ public class Quest {
     private String content;
     private Category category;
     private QuestMaker questMaker;
-    private Timestamp registerTime;
     private Timestamp recruitmentTimeStart;
     private Timestamp recruitmentTimeLimit;
     private Timestamp durationTimeStart;
@@ -31,7 +30,6 @@ public class Quest {
                  final String content,
                  final Category category,
                  final QuestMaker questMaker,
-                 final Timestamp registerTime,
                  final Timestamp recruitmentTimeStart,
                  final Timestamp recruitmentTimeLimit,
                  final Timestamp durationTimeStart,
@@ -48,7 +46,6 @@ public class Quest {
         this.content = content;
         this.category = category;
         this.questMaker = questMaker;
-        this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
         this.recruitmentTimeLimit = recruitmentTimeLimit;
         this.durationTimeStart = durationTimeStart;

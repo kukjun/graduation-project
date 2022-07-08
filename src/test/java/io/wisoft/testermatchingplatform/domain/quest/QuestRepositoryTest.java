@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,8 +59,7 @@ class QuestRepositoryTest {
                         title1,
                         content1,
                         categoryEntity1,
-                questMakerEntity1,
-                        registerTime1,
+                        questMakerEntity1,
                         recruitmentTimeStart1,
                         recruitmentTimeLimit1,
                         durationTimeStart1,
@@ -99,8 +99,7 @@ class QuestRepositoryTest {
                         title2,
                         content2,
                         categoryEntity2,
-                questMakerEntity2,
-                        registerTime2,
+                        questMakerEntity2,
                         recruitmentTimeStart2,
                         recruitmentTimeLimit2,
                         durationTimeStart2,
@@ -112,7 +111,6 @@ class QuestRepositoryTest {
                 )
         );
     }
-
 
 
     @AfterEach
@@ -134,8 +132,8 @@ class QuestRepositoryTest {
 
 
         // when
-        List<QuestEntity> entityList = questRepository.findAllDesc();
-        Quest quest = entityList.get(1).toDomain();
+        List<Optional<QuestEntity>> entityList = questRepository.findAllDesc();
+        Quest quest = entityList.get(1).get().toDomain();
 
         // then
         assertEquals(2, entityList.size());
@@ -158,8 +156,8 @@ class QuestRepositoryTest {
 
 
         // when
-        List<QuestEntity> entityList = questRepository.findByCategoryName(categoryName1);
-        Quest quest = entityList.get(0).toDomain();
+        List<Optional<QuestEntity>> entityList = questRepository.findByCategoryName(categoryName1);
+        Quest quest = entityList.get(0).get().toDomain();
 
         // then
         assertEquals(1, entityList.size());
