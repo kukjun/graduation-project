@@ -2,11 +2,8 @@ package io.wisoft.testermatchingplatform.domain.quest;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCEntity;
-import io.wisoft.testermatchingplatform.domain.ntc.NTCRepository;
-import io.wisoft.testermatchingplatform.domain.quest.Quest;
-import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
-import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +27,7 @@ class QuestRepositoryTest {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
-    private NTCRepository ntcRepository;
+    private QuestMakerRepository questMakerRepository;
 
     @BeforeEach
     public void setupData() {
@@ -43,8 +41,8 @@ class QuestRepositoryTest {
         String ntcNickname1 = "킹준";
         String ntcPassword1 = "1234";
         String ntcPhoneNumber1 = "010-1234-8359";
-        NTCEntity ntcEntity1 = new NTCEntity(ntcEmail1, ntcPassword1, ntcNickname1, ntcPhoneNumber1);
-        ntcRepository.save(ntcEntity1);
+        QuestMakerEntity questMakerEntity1 = new QuestMakerEntity(ntcEmail1, ntcPassword1, ntcNickname1, ntcPhoneNumber1);
+        questMakerRepository.save(questMakerEntity1);
 
         String title1 = "testTitle";
         String content1 = "testContent";
@@ -61,8 +59,7 @@ class QuestRepositoryTest {
                         title1,
                         content1,
                         categoryEntity1,
-                        ntcEntity1,
-                        registerTime1,
+                        questMakerEntity1,
                         recruitmentTimeStart1,
                         recruitmentTimeLimit1,
                         durationTimeStart1,
@@ -82,8 +79,8 @@ class QuestRepositoryTest {
         String ntcNickname2 = "킹희영";
         String ntcPassword2 = "4321";
         String ntcPhoneNumber2 = "010-1234-5678";
-        NTCEntity ntcEntity2 = new NTCEntity(ntcEmail2, ntcPassword2, ntcNickname2, ntcPhoneNumber2);
-        ntcRepository.save(ntcEntity2);
+        QuestMakerEntity questMakerEntity2 = new QuestMakerEntity(ntcEmail2, ntcPassword2, ntcNickname2, ntcPhoneNumber2);
+        questMakerRepository.save(questMakerEntity2);
 
         String title2 = "testTitle2";
         String content2 = "testContent2";
@@ -102,8 +99,7 @@ class QuestRepositoryTest {
                         title2,
                         content2,
                         categoryEntity2,
-                        ntcEntity2,
-                        registerTime2,
+                        questMakerEntity2,
                         recruitmentTimeStart2,
                         recruitmentTimeLimit2,
                         durationTimeStart2,
@@ -117,12 +113,11 @@ class QuestRepositoryTest {
     }
 
 
-
     @AfterEach
     public void cleanup() {
         questRepository.deleteAll();
         categoryRepository.deleteAll();
-        ntcRepository.deleteAll();
+        questMakerRepository.deleteAll();
     }
 
     @Test
@@ -137,15 +132,15 @@ class QuestRepositoryTest {
 
 
         // when
-        List<QuestEntity> entityList = questRepository.findAllDesc();
-        Quest quest = entityList.get(1).toDomain();
+        List<Optional<QuestEntity>> entityList = questRepository.findAllDesc();
+        Quest quest = entityList.get(1).get().toDomain();
 
         // then
         assertEquals(2, entityList.size());
         assertEquals(title1, quest.getTitle());
         assertEquals(content1, quest.getContent());
         assertEquals(categoryName1, quest.getCategory().getName());
-        assertEquals(ntcEmail1, quest.getNtc().getEmail());
+        assertEquals(ntcEmail1, quest.getQuestMaker().getEmail());
 
     }
 
@@ -161,15 +156,15 @@ class QuestRepositoryTest {
 
 
         // when
-        List<QuestEntity> entityList = questRepository.findByCategoryName(categoryName1);
-        Quest quest = entityList.get(0).toDomain();
+        List<Optional<QuestEntity>> entityList = questRepository.findByCategoryName(categoryName1);
+        Quest quest = entityList.get(0).get().toDomain();
 
         // then
         assertEquals(1, entityList.size());
         assertEquals(title1, quest.getTitle());
         assertEquals(content1, quest.getContent());
         assertEquals(categoryName1, quest.getCategory().getName());
-        assertEquals(ntcEmail1, quest.getNtc().getEmail());
+        assertEquals(ntcEmail1, quest.getQuestMaker().getEmail());
     }
 
 }

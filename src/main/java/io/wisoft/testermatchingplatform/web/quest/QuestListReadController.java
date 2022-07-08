@@ -24,7 +24,7 @@ public class QuestListReadController {
     public List<SummarizedQuestResponseDto> findToCategoryName(
             @PathVariable String categoryName
     ) {
-        return questListReadService.findToCategoryName(categoryName);
+        return questListReadService.findByCategoryName(categoryName);
     }
 
 }

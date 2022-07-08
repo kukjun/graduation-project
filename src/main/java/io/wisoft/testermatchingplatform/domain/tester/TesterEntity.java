@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.tester;
 
+import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TESTERS")
-public class TesterEntity {
+public class TesterEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,9 @@ public class TesterEntity {
 
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
 
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
@@ -34,8 +38,9 @@ public class TesterEntity {
     @ManyToOne
     private GradeEntity grade;
 
-    public TesterEntity(String email, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureReference, GradeEntity grade) {
+    public TesterEntity(String email, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureReference, GradeEntity grade) {
         this.email = email;
+        this.nickname = nickname;
         this.phoneNumber = phoneNumber;
         this.preferCategory = preferCategory;
         this.introMessage = introMessage;
@@ -51,6 +56,7 @@ public class TesterEntity {
         return new Tester(
                 this.id,
                 this.email,
+                this.nickname,
                 this.phoneNumber,
                 this.preferCategory.toDomain(),
                 this.introMessage,
@@ -62,6 +68,7 @@ public class TesterEntity {
     public static TesterEntity from(Tester tester) {
         return new TesterEntity(
                 tester.getEmail(),
+                tester.getNickname(),
                 tester.getPhoneNumber(),
                 CategoryEntity.from(tester.getPreferCategory()),
                 tester.getIntroMessage(),

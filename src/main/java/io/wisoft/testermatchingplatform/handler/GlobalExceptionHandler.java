@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.handler;
 
+import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
 import lombok.Getter;
@@ -27,6 +28,14 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
 
         return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ErrorResponse> categoryNotFound(final CategoryNotFoundException e) {
+        ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(errorResponse);
     }
 
