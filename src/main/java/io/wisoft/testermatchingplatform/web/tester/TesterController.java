@@ -1,7 +1,7 @@
 package io.wisoft.testermatchingplatform.web.tester;
 
-import io.wisoft.testermatchingplatform.service.TesterManageService;
-import io.wisoft.testermatchingplatform.service.register.TesterRegisterService;
+import io.wisoft.testermatchingplatform.service.tester.TesterManageService;
+import io.wisoft.testermatchingplatform.service.tester.TesterRegisterService;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterLoginRequest;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterUpdateRequest;
 import io.wisoft.testermatchingplatform.web.dto.response.DetailTesterResponse;
@@ -49,10 +49,6 @@ public class TesterController {
     public Long updateTester(@PathVariable("tester_id") TesterUpdateRequest testerUpdateRequest) {
         return testerManageService.updateTester(testerUpdateRequest);
     }
-
-
-
-
 
 
 }

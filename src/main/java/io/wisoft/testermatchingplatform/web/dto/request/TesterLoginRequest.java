@@ -10,10 +10,5 @@ public class TesterLoginRequest {
 
     private String email;
     private String password;
-    private String nickName;
-    private String phoneNumber;
-    private String preferCategoryName;
-    private String introMessage;
-    private MultipartFile profileImage;
 
 }
