@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "QUEST_MAKERS")
+@Table(name = "QUEST_MAKER")
 public class QuestMakerEntity extends BaseTimeEntity {
 
     // 기본키 매핑

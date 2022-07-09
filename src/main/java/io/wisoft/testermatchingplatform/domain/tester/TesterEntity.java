@@ -7,7 +7,7 @@ import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TESTERS")
+@Table(name = "TESTER")
 public class TesterEntity extends BaseTimeEntity {
 
     @Id
@@ -27,7 +27,7 @@ public class TesterEntity extends BaseTimeEntity {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "prefer_category_id")
     @ManyToOne
     private CategoryEntity preferCategory;
 

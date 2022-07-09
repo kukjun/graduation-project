@@ -7,5 +7,6 @@ spring:
       maximum-pool-size: 4
     username: tester
     password: tester
+    url: jdbc:postgresql://localhost:5432/test_structure
 
 

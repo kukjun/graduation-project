@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "QUESTS")
+@Table(name = "QUEST")
 public class QuestEntity extends BaseTimeEntity {
 
     // 기본키 매핑
