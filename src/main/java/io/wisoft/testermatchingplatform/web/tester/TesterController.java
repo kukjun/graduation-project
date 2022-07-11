@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.web.tester;
 
+import io.wisoft.testermatchingplatform.handler.validator.image.ValidationSequence;
 import io.wisoft.testermatchingplatform.service.tester.TesterManageService;
 import io.wisoft.testermatchingplatform.service.tester.TesterRegisterService;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterLoginRequest;
@@ -7,7 +8,10 @@ import io.wisoft.testermatchingplatform.web.dto.request.TesterUpdateRequest;
 import io.wisoft.testermatchingplatform.web.dto.response.DetailTesterResponse;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 public class TesterController {
@@ -25,7 +29,7 @@ public class TesterController {
     }
 
     @PostMapping("testers")
-    public Long registerTester(@RequestBody TesterRegisterRequest testerRegisterRequest) {
+    public Long registerTester(@RequestBody @Validated(ValidationSequence.class) final TesterRegisterRequest testerRegisterRequest) {
         return testerRegisterService.registerTester(testerRegisterRequest);
     }
 
@@ -36,7 +40,8 @@ public class TesterController {
     }
 
     @PostMapping("testers/login")
-    public Long loginTester(@RequestBody TesterLoginRequest testerLoginRequest) {
+    public Long loginTester(
+            @RequestBody @Valid final TesterLoginRequest testerLoginRequest) {
         return testerManageService.loginTester(testerLoginRequest);
     }
 

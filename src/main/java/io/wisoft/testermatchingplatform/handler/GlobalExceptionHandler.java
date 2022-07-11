@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> emailNotEqual(final EmailNotEqualException e) {
         ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(errorResponse);
     }
 
