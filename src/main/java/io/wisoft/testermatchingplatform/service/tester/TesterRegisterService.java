@@ -7,6 +7,7 @@ import io.wisoft.testermatchingplatform.domain.grade.GradeRepository;
 import io.wisoft.testermatchingplatform.domain.tester.Tester;
 import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
+import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
@@ -52,6 +53,8 @@ public class TesterRegisterService {
         // 선택한 등급을 알기 쉽도록 enum 사용
         Grade gradeDomain = gradeRepository.findByName("Level1").toDomain();
 
+        final String profileImagePath = FileHandler.saveFileData(testerRequest.getIntroPicture());
+
         Tester tester = new Tester(
                 testerRequest.getEmail(),
                 testerRequest.getPassword(),
@@ -59,7 +62,7 @@ public class TesterRegisterService {
                 testerRequest.getPhoneNumber(),
                 categoryDomain,
                 testerRequest.getIntroMessage(),
-                testerRequest.getIntroPictureReference(),
+                profileImagePath,
                 gradeDomain
         );
 

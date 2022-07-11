@@ -8,10 +8,13 @@ import io.wisoft.testermatchingplatform.web.dto.request.TesterUpdateRequest;
 import io.wisoft.testermatchingplatform.web.dto.response.DetailTesterResponse;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class TesterController {
@@ -29,20 +32,27 @@ public class TesterController {
     }
 
     @PostMapping("testers")
-    public Long registerTester(@RequestBody @Validated(ValidationSequence.class) final TesterRegisterRequest testerRegisterRequest) {
-        return testerRegisterService.registerTester(testerRegisterRequest);
-    }
-
-    @DeleteMapping("testers/{tester_id}")
-    public void deleteTester(@PathVariable("tester_id") Long testerId) {
-        testerManageService.deleteTester(testerId);
+    public ResponseEntity<Long> registerTester(@RequestBody @Validated(ValidationSequence.class) final TesterRegisterRequest testerRegisterRequest) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(testerRegisterService.registerTester(testerRegisterRequest));
 
     }
+
+//    연관 내용 전부 지워야 함.
+//    @DeleteMapping("testers/{tester_id}")
+//    public ResponseEntity deleteTester(@PathVariable("tester_id") Long testerId) {
+//        testerManageService.deleteTester(testerId);
+//        return ResponseEntity
+//                .noContent().build();
+//    }
 
     @PostMapping("testers/login")
-    public Long loginTester(
+    public ResponseEntity<Long> loginTester(
             @RequestBody @Valid final TesterLoginRequest testerLoginRequest) {
-        return testerManageService.loginTester(testerLoginRequest);
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(testerManageService.loginTester(testerLoginRequest));
     }
 
     @GetMapping("testers/{tester_id}")

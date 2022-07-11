@@ -25,9 +25,6 @@ public class TesterManageService {
 
     @Transactional
     public void deleteTester(Long testerId) {
-        // 조회
-        // 있으면 지우기
-        // 없으면 예외
         if (testerRepository.existsById(testerId)) {
             testerRepository.deleteById(testerId);
         } else {
@@ -51,6 +48,7 @@ public class TesterManageService {
                 .orElseThrow(() -> new EmailNotEqualException("이메일이 맞지 않습니다."))
                 .toDomain();
 
+        // Domain Logic
         if (findTester.getPassword().equals(testerLoginRequest.getPassword())) {
             return findTester.getId();
         } else {
