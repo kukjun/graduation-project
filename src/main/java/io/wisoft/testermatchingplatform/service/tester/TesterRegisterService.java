@@ -65,7 +65,6 @@ public class TesterRegisterService {
                 profileImagePath,
                 gradeDomain
         );
-
         return testerRepository.save(TesterEntity.from(tester)).toDomain().getId();
 
     }

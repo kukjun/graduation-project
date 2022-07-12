@@ -4,6 +4,7 @@ import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import io.wisoft.testermatchingplatform.domain.tester.Tester;
 import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
+import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.*;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterLoginRequest;
 import io.wisoft.testermatchingplatform.web.dto.request.TesterUpdateRequest;
@@ -74,14 +75,16 @@ public class TesterManageService {
         }
         tester.setPhoneNumber(testerUpdateRequest.getPhoneNumber());
         tester.setPreferCategory(
-                categoryRepository.findByName(testerUpdateRequest.getPreferCategory())
+                categoryRepository.findByName(testerUpdateRequest.getPreferCategoryName())
                         .orElseThrow(
-                                () -> new CategoryNotFoundException(testerUpdateRequest.getPreferCategory() + "를 찾을 수 없음")
+                                () -> new CategoryNotFoundException(testerUpdateRequest.getPreferCategoryName() + "를 찾을 수 없음")
                         ).toDomain()
         );
             tester.setIntroMessage(testerUpdateRequest.getIntroMessage());
-        if (!testerUpdateRequest.getIntroPictrue().isEmpty()) {
-//            이전 사진을 제거하거 새로운 사진을 저장할 수 있도록 하는 로직 필요
+        if (!testerUpdateRequest.getIntroPicture().isEmpty()) {
+//            이전 사진을 제거하고 새로운 사진을 저장할 수 있도록 하는 로직 필요
+            String profilePath = FileHandler.saveFileData(testerUpdateRequest.getIntroPicture());
+            tester.setIntroPictureReference(profilePath);
         }
 
         return testerRepository.save(TesterEntity.from(tester)).toDomain().getId();
