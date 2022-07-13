@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.web.dto.request;
+package io.wisoft.testermatchingplatform.web.dto.req.tester;
 
 import io.wisoft.testermatchingplatform.handler.validator.image.Custom;
 import io.wisoft.testermatchingplatform.handler.validator.image.Image;

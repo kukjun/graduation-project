@@ -2,8 +2,6 @@ package io.wisoft.testermatchingplatform.service.quest;
 
 import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
-import io.wisoft.testermatchingplatform.web.dto.response.DetailQuestResponseDto;
-import io.wisoft.testermatchingplatform.web.dto.response.SummarizedQuestResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

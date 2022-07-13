@@ -3,7 +3,6 @@ package io.wisoft.testermatchingplatform.service.register;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
-import io.wisoft.testermatchingplatform.web.dto.request.QuestMakerRegisterRequest;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;

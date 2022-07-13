@@ -5,8 +5,6 @@ import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
-import io.wisoft.testermatchingplatform.web.dto.response.DetailQuestResponseDto;
-import io.wisoft.testermatchingplatform.web.dto.response.SummarizedQuestResponseDto;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -21,8 +19,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(MockitoExtension.class)

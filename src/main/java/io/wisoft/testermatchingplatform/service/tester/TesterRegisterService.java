@@ -11,7 +11,7 @@ import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
-import io.wisoft.testermatchingplatform.web.dto.request.TesterRegisterRequest;
+import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
