@@ -1,18 +1,10 @@
 package io.wisoft.testermatchingplatform.domain.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
+public interface CategoryRepository extends JpaRepository<CategoryEntity,Long> {
 
-    @Query("SELECT c FROM CategoryEntity c ORDER BY c.id")
-    public List<CategoryEntity> findAllDesc();
-
-    @Query("SELECT c FROM CategoryEntity c WHERE c.name = ?1 ORDER BY c.id")
-    public Optional<CategoryEntity> findByName(String name);
+    Optional<CategoryEntity> findByName(String name);
 }

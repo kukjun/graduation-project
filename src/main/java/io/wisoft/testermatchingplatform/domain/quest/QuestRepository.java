@@ -1,8 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,12 +9,18 @@ import java.util.Optional;
 @Repository
 public interface QuestRepository extends JpaRepository<QuestEntity, Long> {
 
-    @Query("SELECT q FROM QuestEntity q ORDER BY q.id DESC")
-    List<Optional<QuestEntity>> findAllDesc();
+    // 카테고리로 퀘스트 조회
+    List<QuestEntity> findByCategoryId(Long id);
 
-    @Query("SELECT q FROM QuestEntity q WHERE q.category.name=?1 ORDER BY q.id DESC")
-    List<Optional<QuestEntity>> findByCategoryName(final String categoryName);
+    // ntc로 퀘스트 조회
+    List<QuestEntity> findByQuestMakerId(Long id);
 
-    @Query("SELECT q FROM QuestEntity q WHERE q.category.id=?1 ORDER BY q.id DESC")
-    List<Optional<QuestEntity>> findByCategoryId(final Long categoryId);
+    // 아이디로 퀘스트 하나 조회
+    @Override
+    Optional<QuestEntity> findById(Long id);
+
+    //퀘스트 save
+
+    // 아이디와 연관된 퀘스트 모두 제거
+    void deleteAllByQuestMaker_Id(Long id);
 }

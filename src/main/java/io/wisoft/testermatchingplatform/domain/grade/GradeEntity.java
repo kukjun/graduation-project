@@ -1,45 +1,43 @@
 package io.wisoft.testermatchingplatform.domain.grade;
 
-import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @Entity
-@Table(name = "GRADE")
+@Table(name = "grade")
+@NoArgsConstructor
 public class GradeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private int id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "available_quest_amount", nullable = false)
-    private Long availableQuestAmount;
+    private int availableQuestAmount;
 
-    public GradeEntity(String name, Long availableQuestAmount) {
+    public static GradeEntity from(final Grade grade){
+        return new GradeEntity(
+                grade.getId(),
+                grade.getName(),
+                grade.getAvailable_quest_amount()
+        );
+    }
+
+    public GradeEntity(int id, String name, int availableQuestAmount) {
+        this.id = id;
         this.name = name;
         this.availableQuestAmount = availableQuestAmount;
     }
 
-    public GradeEntity() {
-
-    }
-
-    public Grade toDomain() {
+    public Grade toDomain(){
         return new Grade(
                 this.id,
                 this.name,
                 this.availableQuestAmount
-        );
-    }
-
-    public static GradeEntity from(Grade grade) {
-        return new GradeEntity(
-                grade.getName(),
-                grade.getAvailableQuestAmount()
         );
     }
 }

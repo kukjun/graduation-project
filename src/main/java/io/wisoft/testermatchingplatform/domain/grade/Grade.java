@@ -1,16 +1,12 @@
 package io.wisoft.testermatchingplatform.domain.grade;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class Grade {
-    private Long id;
+    private int id;
     private String name;
-    private Long availableQuestAmount;
-
-    public Grade(Long id, String name, Long availableQuestAmount) {
-        this.id = id;
-        this.name = name;
-        this.availableQuestAmount = availableQuestAmount;
-    }
+    private int available_quest_amount;
 }

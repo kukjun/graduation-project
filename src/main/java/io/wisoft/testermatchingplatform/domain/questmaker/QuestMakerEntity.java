@@ -1,60 +1,56 @@
 package io.wisoft.testermatchingplatform.domain.questmaker;
 
-import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+@Data
 @Entity
-@Table(name = "QUEST_MAKER")
-public class QuestMakerEntity extends BaseTimeEntity {
+@Table(name = "quest_maker")
+@NoArgsConstructor
+public class QuestMakerEntity {
 
-    // 기본키 매핑
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "email", nullable = false)
     private String email;
-
-    @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "nickname", nullable = false)
     private String nickname;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
+    private Date registerTime;
 
-
-    public QuestMakerEntity(String email, String password, String nickname, String phoneNumber) {
+    public QuestMakerEntity(Long id, String email, String password, String nickname, String phoneNumber,Date registerTime) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
+        this.registerTime = registerTime;
     }
 
-    public QuestMakerEntity() {
-
-    }
-
-    public QuestMaker toDomain() {
+    public QuestMaker toDomain(){
         return new QuestMaker(
                 this.id,
                 this.email,
                 this.password,
                 this.nickname,
-                this.phoneNumber
+                this.phoneNumber,
+                this.registerTime
         );
     }
 
-    public static QuestMakerEntity from(final QuestMaker questMaker) {
+    public static QuestMakerEntity from(final QuestMaker questMaker){
         return new QuestMakerEntity(
+                questMaker.getId(),
                 questMaker.getEmail(),
                 questMaker.getPassword(),
                 questMaker.getNickname(),
-                questMaker.getPhoneNumber()
+                questMaker.getPhoneNumber(),
+                questMaker.getRegisterTime()
         );
     }
 

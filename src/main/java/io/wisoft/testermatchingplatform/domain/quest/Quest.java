@@ -1,49 +1,36 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
+import io.wisoft.testermatchingplatform.domain.category.Category;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Getter
+@AllArgsConstructor
 public class Quest {
-
     private Long id;
     private String title;
     private String content;
-    private Long categoryId;
-    private Long ntcId;
-    private Timestamp registerTime;
-    private Timestamp recruitmentTimeStart;
-    private Timestamp recruitmentTimeLimit;
-    private Timestamp durationTimeStart;
-    private Timestamp durationTimeLimit;
-    private Timestamp modifyTimeStart;
-    private Timestamp modifyTimeLimit;
-    private Long capacity;
-    private Long paymentPoint;
+    private Category category;
+    private Date registerTime;
+    private Date recruitmentTimeStart;
+    private Date recruitmentTimeLimit;
+    private Date durationTimeStart;
+    private Date durationTimeLimit;
+    private Date modifyTimeStart;
+    private Date modifyTimeLimit;
+    private QuestMaker questMaker;
+    private int participantCapacity;
+    private int reward;
     private String requireCondition;
     private String preferenceCondition;
 
-    public Quest(final String title,
-                 final String content,
-                 final Long categoryId,
-                 final Long ntcId,
-                 final Timestamp registerTime,
-                 final Timestamp recruitmentTimeStart,
-                 final Timestamp recruitmentTimeLimit,
-                 final Timestamp durationTimeStart,
-                 final Timestamp durationTimeLimit,
-                 final Timestamp modifyTimeStart,
-                 final Timestamp modifyTimeLimit,
-                 final Long capacity,
-                 final Long paymentPoint,
-                 final String requireCondition,
-                 final String preferenceCondition
-    ) {
+    public Quest(String title, String content, Category category, Date registerTime, Date recruitmentTimeStart, Date recruitmentTimeLimit, Date durationTimeStart, Date durationTimeLimit, Date modifyTimeStart, Date modifyTimeLimit, QuestMaker questMaker, int participantCapacity, int reward, String requireCondition, String preferenceCondition) {
         this.title = title;
         this.content = content;
-        this.categoryId = categoryId;
-        this.ntcId = ntcId;
+        this.category = category;
         this.registerTime = registerTime;
         this.recruitmentTimeStart = recruitmentTimeStart;
         this.recruitmentTimeLimit = recruitmentTimeLimit;
@@ -51,10 +38,10 @@ public class Quest {
         this.durationTimeLimit = durationTimeLimit;
         this.modifyTimeStart = modifyTimeStart;
         this.modifyTimeLimit = modifyTimeLimit;
-        this.capacity = capacity;
-        this.paymentPoint = paymentPoint;
+        this.questMaker = questMaker;
+        this.participantCapacity = participantCapacity;
+        this.reward = reward;
         this.requireCondition = requireCondition;
         this.preferenceCondition = preferenceCondition;
     }
-
 }

@@ -1,59 +1,75 @@
 package io.wisoft.testermatchingplatform.domain.tester;
 
-import io.wisoft.testermatchingplatform.domain.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+@Data
 @Entity
-@Table(name = "TESTER")
-public class TesterEntity extends BaseTimeEntity {
+@Table(name = "tester")
+@NoArgsConstructor
+public class TesterEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "nickname", nullable = false)
     private String nickname;
 
-    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @JoinColumn(name = "prefer_category_id")
+    @JoinColumn(name = "PREFER_CATEGORY_ID")
     @ManyToOne
     private CategoryEntity preferCategory;
 
-    @Column(name = "intro_message")
     private String introMessage;
 
-    @Column(name = "intro_picture_reference")
-    private String introPictureReference;
+    private String introPictureRef;
 
-    @JoinColumn(name = "grade_id")
+    @JoinColumn(name = "GRADE_ID")
     @ManyToOne
     private GradeEntity grade;
 
-    public TesterEntity(String email, String password, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureReference, GradeEntity grade) {
+    private Date registerTime;
+
+    public TesterEntity(Long id, String email, String password, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureRef, GradeEntity grade, Date registerTime) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
         this.preferCategory = preferCategory;
         this.introMessage = introMessage;
-        this.introPictureReference = introPictureReference;
+        this.introPictureRef = introPictureRef;
         this.grade = grade;
+        this.registerTime = registerTime;
     }
 
-    public TesterEntity() {
 
+    public static TesterEntity from(final Tester tester) {
+        return new TesterEntity(
+                tester.getId(),
+                tester.getEmail(),
+                tester.getPassword(),
+                tester.getNickname(),
+                tester.getPhoneNumber(),
+                CategoryEntity.from(tester.getPreferCategory()),
+                tester.getIntroMessage(),
+                tester.getIntroPictureRef(),
+                GradeEntity.from(tester.getGrade()),
+                tester.getRegisterTime()
+        );
     }
 
     public Tester toDomain() {
@@ -65,33 +81,9 @@ public class TesterEntity extends BaseTimeEntity {
                 this.phoneNumber,
                 this.preferCategory.toDomain(),
                 this.introMessage,
-                this.introPictureReference,
-                this.grade.toDomain()
+                this.introPictureRef,
+                this.grade.toDomain(),
+                this.registerTime
         );
     }
-
-    // 추가 로직, Tester를 TesterEntity와 맞추어 주는 과정 필요
-    public void SynchronizeFromDomain(Tester tester) {
-        this.email = tester.getEmail();
-        this.password = tester.getPassword();
-        this.nickname = tester.getNickname();
-        this.phoneNumber = tester.getPhoneNumber();
-        this.preferCategory = CategoryEntity.from(tester.getPreferCategory());
-        this.introMessage = tester.getIntroMessage();
-        this.introPictureReference = tester.getIntroPictureReference();
-    }
-
-    public static TesterEntity from(Tester tester) {
-        return new TesterEntity(
-                tester.getEmail(),
-                tester.getPassword(),
-                tester.getNickname(),
-                tester.getPhoneNumber(),
-                CategoryEntity.from(tester.getPreferCategory()),
-                tester.getIntroMessage(),
-                tester.getIntroPictureReference(),
-                GradeEntity.from(tester.getGrade())
-        );
-    }
-
 }
