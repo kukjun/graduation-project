@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.web.controller.questmaker;
+package io.wisoft.testermatchingplatform.web.controller.quest;
 
 import com.wisoft.io.testermatchingplatform.service.QuestService;
 import com.wisoft.io.testermatchingplatform.web.dto.resp.quest.QuestInfoResponse;

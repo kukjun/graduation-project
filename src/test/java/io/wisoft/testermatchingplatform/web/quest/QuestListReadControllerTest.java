@@ -7,7 +7,6 @@ import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.service.quest.QuestListReadService;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
-import io.wisoft.testermatchingplatform.web.dto.response.SummarizedQuestResponseDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
