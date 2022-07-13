@@ -6,7 +6,7 @@ import io.wisoft.testermatchingplatform.domain.submit.Submit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Getter
 @AllArgsConstructor
@@ -16,6 +16,6 @@ public class TesterReport {
     private Submit submit;
     private ReportPolicy report;
     private String title;
-    private Date registerTime;
+    private Timestamp registerTime;
     private boolean result;
 }

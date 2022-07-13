@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -24,13 +22,13 @@ public class QuestEntity {
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
     private CategoryEntity category;
-    private Date registerTime;
-    private Date recruitmentTimeStart;
-    private Date recruitmentTimeLimit;
-    private Date durationTimeStart;
-    private Date durationTimeLimit;
-    private Date modifyTimeStart;
-    private Date modifyTimeLimit;
+    private Timestamp registerTime;
+    private Timestamp recruitmentTimeStart;
+    private Timestamp recruitmentTimeLimit;
+    private Timestamp durationTimeStart;
+    private Timestamp durationTimeLimit;
+    private Timestamp modifyTimeStart;
+    private Timestamp modifyTimeLimit;
     @ManyToOne
     @JoinColumn(name = "QUEST_MAKER_ID")
     private QuestMakerEntity questMaker;
@@ -44,7 +42,7 @@ public class QuestEntity {
                 this.id,
                 this.title,
                 this.content,
-                this.category.toDomain(),
+                this.category == null ? null :this.category.toDomain(),
                 this.registerTime,
                 this.recruitmentTimeStart,
                 this.recruitmentTimeLimit,
@@ -52,7 +50,7 @@ public class QuestEntity {
                 this.durationTimeLimit,
                 this.modifyTimeStart,
                 this.modifyTimeLimit,
-                this.questMaker.toDomain(),
+                this.questMaker == null ? null:this.questMaker.toDomain(),
                 this.participantCapacity,
                 this.reward,
                 this.requireCondition,
@@ -81,7 +79,7 @@ public class QuestEntity {
         );
     }
 
-    public QuestEntity(Long id, String title, String content, CategoryEntity category, Date registerTime, Date recruitmentTimeStart, Date recruitmentTimeLimit, Date durationTimeStart, Date durationTimeLimit, Date modifyTimeStart, Date modifyTimeLimit, QuestMakerEntity questMaker, int participantCapacity, int reward, String requireCondition, String preferenceCondition) {
+    public QuestEntity(Long id, String title, String content, CategoryEntity category, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, QuestMakerEntity questMaker, int participantCapacity, int reward, String requireCondition, String preferenceCondition) {
         this.id = id;
         this.title = title;
         this.content = content;

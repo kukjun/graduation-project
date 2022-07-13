@@ -40,7 +40,7 @@ public class AuthEntity {
     public Auth toDomain(){
         return new Auth(
                 this.id,
-                this.submit.toDomain(),
+                this.submit == null ? null : this.submit.toDomain(),
                 this.status,
                 this.comment
         );

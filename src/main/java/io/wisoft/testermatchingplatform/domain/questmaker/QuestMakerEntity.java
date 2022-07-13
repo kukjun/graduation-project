@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -21,9 +19,9 @@ public class QuestMakerEntity {
     private String password;
     private String nickname;
     private String phoneNumber;
-    private Date registerTime;
+    private Timestamp registerTime;
 
-    public QuestMakerEntity(Long id, String email, String password, String nickname, String phoneNumber,Date registerTime) {
+    public QuestMakerEntity(Long id, String email, String password, String nickname, String phoneNumber,Timestamp registerTime) {
         this.id = id;
         this.email = email;
         this.password = password;

@@ -3,7 +3,7 @@ package io.wisoft.testermatchingplatform.domain.questmaker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Getter
 @AllArgsConstructor
@@ -13,9 +13,9 @@ public class QuestMaker {
     private String password;
     private String nickname;
     private String phoneNumber;
-    private Date registerTime;
+    private Timestamp registerTime;
 
-    public QuestMaker(String email, String password, String nickname, String phoneNumber, Date registerTime) {
+    public QuestMaker(String email, String password, String nickname, String phoneNumber, Timestamp registerTime) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
@@ -37,12 +37,6 @@ public class QuestMaker {
     public void checkPassword(final String confirmPassword) {
         if (!this.password.equals(confirmPassword)) {
             throw new IllegalArgumentException("confirmPassword and password not equal");
-        }
-    }
-
-    public void checkPhoneNumber() {
-        if (!PhoneNumberValidation.validPhoneNumber(this.phoneNumber)) {
-            throw new InvaildPhoneNumberException("invalid phone number");
         }
     }
 }

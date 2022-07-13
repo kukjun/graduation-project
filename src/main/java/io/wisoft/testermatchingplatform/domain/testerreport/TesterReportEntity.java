@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -24,7 +24,7 @@ public class TesterReportEntity {
     @OneToOne
     private ReportPolicyEntity report;
     private String title;
-    private Date registerTime;
+    private Timestamp registerTime;
     private boolean result;
 
     public static TesterReportEntity from(final TesterReport testerReport){
@@ -38,7 +38,7 @@ public class TesterReportEntity {
         );
     }
 
-    public TesterReportEntity(Long id, SubmitEntity submit, ReportPolicyEntity report, String title, Date registerTime, boolean result) {
+    public TesterReportEntity(Long id, SubmitEntity submit, ReportPolicyEntity report, String title, Timestamp registerTime, boolean result) {
         this.id = id;
         this.submit = submit;
         this.report = report;
@@ -50,8 +50,8 @@ public class TesterReportEntity {
     public TesterReport toDomain(){
         return new TesterReport(
                 this.id,
-                this.submit.toDomain(),
-                this.report.toDomain(),
+                this.submit == null ? null : this.submit.toDomain(),
+                this.report == null ? null : this.report.toDomain(),
                 this.title,
                 this.registerTime,
                 this.result

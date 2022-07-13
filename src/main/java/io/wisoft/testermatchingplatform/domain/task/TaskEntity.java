@@ -44,7 +44,7 @@ public class TaskEntity {
         return new Task(
                 this.id,
                 this.taskNumber,
-                this.quest.toDomain(),
+                this.quest == null ? null : this.quest.toDomain(),
                 this.taskExampleRef,
                 this.require
         );

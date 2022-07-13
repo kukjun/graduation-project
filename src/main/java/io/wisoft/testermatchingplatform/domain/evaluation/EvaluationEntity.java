@@ -1,5 +1,8 @@
 package io.wisoft.testermatchingplatform.domain.evaluation;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.wisoft.testermatchingplatform.domain.auth.Auth;
+import io.wisoft.testermatchingplatform.domain.auth.AuthEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,20 +15,25 @@ import javax.persistence.*;
 public class EvaluationEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long authId;
+    @Column(name = "Auth_ID")
+
+    @JoinColumn(name = "AUTH_ID")
+    @OneToOne
+    @MapsId
+    @JsonManagedReference
+    private AuthEntity authId;
     private Long starPoint;
     private String comment;
 
     public static EvaluationEntity from(final Evaluation evaluation){
         return new EvaluationEntity(
-                evaluation.getAuthId(),
+                AuthEntity.from(evaluation.getAuthId()),
                 evaluation.getStarPoint(),
                 evaluation.getComment()
         );
     }
 
-    public EvaluationEntity(Long authId, Long starPoint, String comment) {
+    public EvaluationEntity(AuthEntity authId, Long starPoint, String comment) {
         this.authId = authId;
         this.starPoint = starPoint;
         this.comment = comment;
@@ -33,7 +41,7 @@ public class EvaluationEntity {
 
     public Evaluation toDomain(){
         return new Evaluation(
-                this.authId,
+                this.authId == null ? null : this.authId.toDomain(),
                 this.starPoint,
                 this.comment
         );

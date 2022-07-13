@@ -58,8 +58,8 @@ public class ApplyEntity {
                 this.id,
                 this.registerTime,
                 this.permissionTime,
-                this.tester.toDomain(),
-                this.quest.toDomain(),
+                this.tester == null ? null : this.tester.toDomain(),
+                this.quest == null ? null : this.quest.toDomain(),
                 this.requireConditionSubmitRef,
                 this.preferenceConditionSubmitRef
         );

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "submit")
@@ -17,8 +17,8 @@ public class SubmitEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date registerTime;
-    private Date reportTime;
+    private Timestamp registerTime;
+    private Timestamp reportTime;
     @JoinColumn(name = "TESTER_ID")
     @ManyToOne
     private TesterEntity tester;
@@ -36,7 +36,7 @@ public class SubmitEntity {
         );
     }
 
-    public SubmitEntity(Long id, Date registerTime, Date reportTime, TesterEntity tester, QuestEntity quest) {
+    public SubmitEntity(Long id, Timestamp registerTime, Timestamp reportTime, TesterEntity tester, QuestEntity quest) {
         this.id = id;
         this.registerTime = registerTime;
         this.reportTime = reportTime;
@@ -49,8 +49,8 @@ public class SubmitEntity {
                 this.id,
                 this.registerTime,
                 this.reportTime,
-                this.tester.toDomain(),
-                this.quest.toDomain()
+                this.tester == null ? null : this.tester.toDomain(),
+                this.quest == null ? null : this.quest.toDomain()
         );
     }
 }

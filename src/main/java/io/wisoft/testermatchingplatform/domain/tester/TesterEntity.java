@@ -79,10 +79,10 @@ public class TesterEntity {
                 this.password,
                 this.nickname,
                 this.phoneNumber,
-                this.preferCategory.toDomain(),
+                this.preferCategory == null ? null : this.preferCategory.toDomain(),
                 this.introMessage,
                 this.introPictureRef,
-                this.grade.toDomain(),
+                this.grade == null ? null : this.grade.toDomain(),
                 this.registerTime
         );
     }

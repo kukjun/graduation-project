@@ -5,7 +5,7 @@ import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Getter
 @AllArgsConstructor
@@ -14,20 +14,20 @@ public class Quest {
     private String title;
     private String content;
     private Category category;
-    private Date registerTime;
-    private Date recruitmentTimeStart;
-    private Date recruitmentTimeLimit;
-    private Date durationTimeStart;
-    private Date durationTimeLimit;
-    private Date modifyTimeStart;
-    private Date modifyTimeLimit;
+    private Timestamp registerTime;
+    private Timestamp recruitmentTimeStart;
+    private Timestamp recruitmentTimeLimit;
+    private Timestamp durationTimeStart;
+    private Timestamp durationTimeLimit;
+    private Timestamp modifyTimeStart;
+    private Timestamp modifyTimeLimit;
     private QuestMaker questMaker;
     private int participantCapacity;
     private int reward;
     private String requireCondition;
     private String preferenceCondition;
 
-    public Quest(String title, String content, Category category, Date registerTime, Date recruitmentTimeStart, Date recruitmentTimeLimit, Date durationTimeStart, Date durationTimeLimit, Date modifyTimeStart, Date modifyTimeLimit, QuestMaker questMaker, int participantCapacity, int reward, String requireCondition, String preferenceCondition) {
+    public Quest(String title, String content, Category category, Timestamp registerTime, Timestamp recruitmentTimeStart, Timestamp recruitmentTimeLimit, Timestamp durationTimeStart, Timestamp durationTimeLimit, Timestamp modifyTimeStart, Timestamp modifyTimeLimit, QuestMaker questMaker, int participantCapacity, int reward, String requireCondition, String preferenceCondition) {
         this.title = title;
         this.content = content;
         this.category = category;

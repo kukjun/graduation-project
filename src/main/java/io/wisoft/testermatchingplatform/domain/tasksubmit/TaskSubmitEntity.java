@@ -37,8 +37,8 @@ public class TaskSubmitEntity {
 
     public TaskSubmit toDomain(){
         return new TaskSubmit(
-                this.id.getSubmit().toDomain(),
-                this.id.getTask().toDomain(),
+                this.id.getSubmit() == null ? null : this.id.getSubmit().toDomain(),
+                this.id.getTask() == null ? null : this.id.getTask().toDomain(),
                 this.file_submit_ref,
                 this.isPass
         );

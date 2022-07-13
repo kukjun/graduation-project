@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -24,7 +24,7 @@ public class QuestMakerReportEntity {
     @JoinColumn(name = "REPORT_POLICY_ID")
     private ReportPolicyEntity report;
     private String title;
-    private Date registerTime;
+    private Timestamp registerTime;
     private boolean result;
 
     public static QuestMakerReportEntity from(final QuestMakerReport questMakerReport){
@@ -38,7 +38,7 @@ public class QuestMakerReportEntity {
         );
     }
 
-    public QuestMakerReportEntity(Long id, ApplyEntity apply, ReportPolicyEntity report, String title, Date registerTime, boolean result) {
+    public QuestMakerReportEntity(Long id, ApplyEntity apply, ReportPolicyEntity report, String title, Timestamp registerTime, boolean result) {
         this.id = id;
         this.apply = apply;
         this.report = report;
@@ -50,8 +50,8 @@ public class QuestMakerReportEntity {
     public QuestMakerReport toDomain(){
         return new QuestMakerReport(
                 this.id,
-                this.apply.toDomain(),
-                this.report.toDomain(),
+                this.apply == null ? null : this.apply.toDomain(),
+                this.report == null ? null : this.report.toDomain(),
                 this.title,
                 this.registerTime,
                 this.result

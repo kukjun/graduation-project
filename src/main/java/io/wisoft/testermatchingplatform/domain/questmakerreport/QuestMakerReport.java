@@ -5,7 +5,7 @@ import io.wisoft.testermatchingplatform.domain.reportpolicy.ReportPolicy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Getter
 @AllArgsConstructor
@@ -15,6 +15,6 @@ public class QuestMakerReport {
     private Apply apply;
     private ReportPolicy report;
     private String title;
-    private Date registerTime;
+    private Timestamp registerTime;
     private boolean result;
 }
