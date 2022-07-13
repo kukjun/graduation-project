@@ -138,7 +138,7 @@ public class QuestEntity extends BaseTimeEntity {
                 this.id,
                 this.title,
                 this.content,
-                this.category.toDomain(),
+                this.category == null ? null : this.category.toDomain(),
                 this.questMaker.toDomain(),
                 this.recruitmentTimeStart,
                 this.recruitmentTimeLimit,
