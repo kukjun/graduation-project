@@ -2,7 +2,7 @@ package io.wisoft.testermatchingplatform.web.controller.tester;
 
 import io.wisoft.testermatchingplatform.handler.validator.image.ValidationSequence;
 import io.wisoft.testermatchingplatform.service.tester.TesterManageService;
-import io.wisoft.testermatchingplatform.service.tester.TesterRegisterService;
+import io.wisoft.testermatchingplatform.service.tester.TesterAuthService;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterLoginRequest;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterRegisterRequest;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterUpdateRequest;
@@ -18,15 +18,15 @@ import javax.validation.Valid;
 @RestController
 public class TesterController {
 
-    final TesterRegisterService testerRegisterService;
+    final TesterAuthService testerAuthService;
     final TesterManageService testerManageService;
 
     @Autowired
     TesterController(
-            TesterRegisterService testerRegisterService,
+            TesterAuthService testerAuthService,
             TesterManageService testerManageService
     ) {
-        this.testerRegisterService = testerRegisterService;
+        this.testerAuthService = testerAuthService;
         this.testerManageService = testerManageService;
     }
 
@@ -34,7 +34,7 @@ public class TesterController {
     public ResponseEntity<Long> registerTester(@RequestBody @Validated(ValidationSequence.class) final TesterRegisterRequest testerRegisterRequest) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(testerRegisterService.registerTester(testerRegisterRequest));
+                .body(testerAuthService.registerTester(testerRegisterRequest));
 
     }
 

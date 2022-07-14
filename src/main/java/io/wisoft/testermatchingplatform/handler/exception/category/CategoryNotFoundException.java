@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.handler.exception;
+package io.wisoft.testermatchingplatform.handler.exception.category;
 
 public class CategoryNotFoundException extends RuntimeException{
 

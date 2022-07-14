@@ -1,10 +1,11 @@
 package io.wisoft.testermatchingplatform.web.dto.resp.quest;
 
-import com.wisoft.io.testermatchingplatform.domain.quest.Quest;
+import io.wisoft.testermatchingplatform.domain.quest.Quest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 @Getter
 @AllArgsConstructor
@@ -13,9 +14,9 @@ public class QuestSimpleInfoResponse {
     private String title;
     private String content;
     private String categoryName;
-    private Date registerTime;
-    private Date recruitmentTimeStart;
-    private Date recruitmentTimeLimit;
+    private Timestamp registerTime;
+    private Timestamp recruitmentTimeStart;
+    private Timestamp recruitmentTimeLimit;
     private String questMakerName;
     private int participantCapacity;
     private int reward;

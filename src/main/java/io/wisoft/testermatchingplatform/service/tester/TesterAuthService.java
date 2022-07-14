@@ -8,23 +8,23 @@ import io.wisoft.testermatchingplatform.domain.tester.Tester;
 import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
 import io.wisoft.testermatchingplatform.handler.FileHandler;
-import io.wisoft.testermatchingplatform.handler.exception.CategoryNotFoundException;
-import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
-import io.wisoft.testermatchingplatform.handler.exception.NicknameOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class TesterRegisterService {
+public class TesterAuthService {
 
     private final TesterRepository testerRepository;
     private final CategoryRepository categoryRepository;
     private final GradeRepository gradeRepository;
 
     @Autowired
-    public TesterRegisterService(
+    public TesterAuthService(
             final TesterRepository testerRepository,
             final CategoryRepository categoryRepository,
             final GradeRepository gradeRepository) {

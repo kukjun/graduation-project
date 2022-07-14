@@ -1,6 +1,10 @@
 package io.wisoft.testermatchingplatform.handler;
 
-import io.wisoft.testermatchingplatform.handler.exception.*;
+import io.wisoft.testermatchingplatform.handler.exception.auth.EmailNotEqualException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.PasswordNotEqualException;
+import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

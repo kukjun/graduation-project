@@ -1,6 +1,6 @@
 package io.wisoft.testermatchingplatform.web.dto.resp.apply;
 
-import com.wisoft.io.testermatchingplatform.domain.apply.Apply;
+import io.wisoft.testermatchingplatform.domain.apply.Apply;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

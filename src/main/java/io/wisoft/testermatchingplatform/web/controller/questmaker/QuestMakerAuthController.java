@@ -1,9 +1,9 @@
 package io.wisoft.testermatchingplatform.web.controller.questmaker;
 
-import com.wisoft.io.testermatchingplatform.service.QuestMakerAuthService;
-import com.wisoft.io.testermatchingplatform.web.dto.req.questmaker.QuestMakerSigninRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.req.questmaker.QuestMakerSignupRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.questmaker.QuestMakerIdResponse;
+import io.wisoft.testermatchingplatform.service.questmaker.QuestMakerAuthService;
+import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSigninRequest;
+import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSignupRequest;
+import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerIdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

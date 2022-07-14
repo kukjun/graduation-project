@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.handler.exception;
+package io.wisoft.testermatchingplatform.handler.exception.auth;
 
 public class EmailOverlapException extends RuntimeException {
 

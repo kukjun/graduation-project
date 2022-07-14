@@ -1,34 +1,34 @@
 package io.wisoft.testermatchingplatform.service.questmaker;
 
-import com.wisoft.io.testermatchingplatform.domain.apply.Apply;
-import com.wisoft.io.testermatchingplatform.domain.apply.ApplyEntity;
-import com.wisoft.io.testermatchingplatform.domain.apply.ApplyRepository;
-import com.wisoft.io.testermatchingplatform.domain.category.Category;
-import com.wisoft.io.testermatchingplatform.domain.category.CategoryRepository;
-import com.wisoft.io.testermatchingplatform.domain.quest.Quest;
-import com.wisoft.io.testermatchingplatform.domain.quest.QuestEntity;
-import com.wisoft.io.testermatchingplatform.domain.quest.QuestRepository;
-import com.wisoft.io.testermatchingplatform.domain.questmaker.QuestMaker;
-import com.wisoft.io.testermatchingplatform.domain.questmaker.QuestMakerRepository;
-import com.wisoft.io.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
-import com.wisoft.io.testermatchingplatform.handler.exception.questmaker.QuestMakerNotFoundException;
-import com.wisoft.io.testermatchingplatform.web.dto.req.apply.ApproveRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.req.quest.QuestRegistRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.apply.ApplyIdResponse;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.apply.ApplyTesterDetailResponse;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.apply.ApplyTesterListResponse;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.quest.QuestIdResponse;
+import io.wisoft.testermatchingplatform.domain.apply.Apply;
+import io.wisoft.testermatchingplatform.domain.apply.ApplyEntity;
+import io.wisoft.testermatchingplatform.domain.apply.ApplyRepository;
+import io.wisoft.testermatchingplatform.domain.category.Category;
+import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
+import io.wisoft.testermatchingplatform.domain.quest.Quest;
+import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
+import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
+import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
+import io.wisoft.testermatchingplatform.handler.exception.questmaker.QuestMakerNotFoundException;
+import io.wisoft.testermatchingplatform.web.dto.req.apply.ApproveRequest;
+import io.wisoft.testermatchingplatform.web.dto.req.quest.QuestRegistRequest;
+import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyIdResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterDetailResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterListResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestIdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class QuestMakerActiveService {
+public class QuestMakerManageService {
 
     private final QuestMakerRepository questMakerRepository;
     private final CategoryRepository categoryRepository;
@@ -43,14 +43,14 @@ public class QuestMakerActiveService {
                 () -> new CategoryNotFoundException("category not found")
         ).toDomain();
         QuestMaker questMaker = questMakerRepository.findById(questMakerId).orElseThrow(
-                () -> new QuestMakerNotFoundException("questmaker not found")
+                () -> new QuestMakerNotFoundException("questmakerlogin not found")
         ).toDomain();
 
         Quest quest = new Quest(
                 request.getTitle(),
                 request.getContent(),
                 category,
-                new Date(),
+                new Timestamp(System.currentTimeMillis()),
                 request.getRecruitmentTimeStart(),
                 request.getRecruitmentTimeLimit(),
                 request.getDurationTimeStart(),
@@ -81,7 +81,7 @@ public class QuestMakerActiveService {
                 () -> new CategoryNotFoundException("category not found")
         ).toDomain();
         QuestMaker questMaker = questMakerRepository.findById(questMakerId).orElseThrow(
-                () -> new QuestMakerNotFoundException("questmaker not found")
+                () -> new QuestMakerNotFoundException("questmakerlogin not found")
         ).toDomain();
 
         Quest quest = new Quest(
@@ -89,7 +89,7 @@ public class QuestMakerActiveService {
                 request.getTitle(),
                 request.getContent(),
                 category,
-                new Date(),
+                new Timestamp(System.currentTimeMillis()),
                 request.getRecruitmentTimeStart(),
                 request.getRecruitmentTimeLimit(),
                 request.getDurationTimeStart(),
@@ -133,7 +133,7 @@ public class QuestMakerActiveService {
 
         ).toDomain();
         if (approveRequest.getSuccess() == 1){
-            apply.setPermissionTime(new Date());
+            apply.setPermissionTime(new Timestamp(System.currentTimeMillis()));
             apply = applyRepository.save(ApplyEntity.from(apply)).toDomain();
         }
         return ApplyIdResponse.from(apply);

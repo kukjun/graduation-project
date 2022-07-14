@@ -1,10 +1,10 @@
 package io.wisoft.testermatchingplatform.service.quest;
 
-import com.wisoft.io.testermatchingplatform.domain.quest.QuestRepository;
-import com.wisoft.io.testermatchingplatform.domain.task.TaskRepository;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.quest.QuestInfoResponse;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.quest.QuestSimpleInfoResponse;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.task.TaskResponse;
+import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
+import io.wisoft.testermatchingplatform.domain.task.TaskRepository;
+import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestInfoResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestSimpleInfoResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.task.TaskResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class QuestService {
+public class QuestSelectService {
     private final QuestRepository questRepository;
     private final TaskRepository taskRepository;
 

@@ -1,6 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.questmaker;
 
-import io.wisoft.testermatchingplatform.handler.exception.EmailOverlapException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

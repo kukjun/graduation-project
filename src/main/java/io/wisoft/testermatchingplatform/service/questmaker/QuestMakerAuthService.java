@@ -1,16 +1,16 @@
 package io.wisoft.testermatchingplatform.service.questmaker;
 
-import com.wisoft.io.testermatchingplatform.domain.questmaker.QuestMaker;
-import com.wisoft.io.testermatchingplatform.domain.questmaker.QuestMakerEntity;
-import com.wisoft.io.testermatchingplatform.domain.questmaker.QuestMakerRepository;
-import com.wisoft.io.testermatchingplatform.web.dto.req.questmaker.QuestMakerSigninRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.req.questmaker.QuestMakerSignupRequest;
-import com.wisoft.io.testermatchingplatform.web.dto.resp.questmaker.QuestMakerIdResponse;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerEntity;
+import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
+import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSigninRequest;
+import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSignupRequest;
+import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerIdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Service
 @RequiredArgsConstructor
@@ -23,10 +23,9 @@ public class QuestMakerAuthService {
                 request.getPassword(),
                 request.getNickname(),
                 request.getPhoneNumber(),
-                new Date()
+                new Timestamp(System.currentTimeMillis())
         );
         questMaker.checkPassword(request.getConfirmPassword());
-        questMaker.checkPhoneNumber();
         questMaker = questMakerRepository.save(QuestMakerEntity.from(questMaker)).toDomain();
         return QuestMakerIdResponse.from(questMaker.getId());
     }

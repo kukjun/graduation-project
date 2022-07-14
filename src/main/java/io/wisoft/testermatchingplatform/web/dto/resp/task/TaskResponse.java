@@ -1,6 +1,6 @@
 package io.wisoft.testermatchingplatform.web.dto.resp.task;
 
-import com.wisoft.io.testermatchingplatform.domain.task.Task;
+import io.wisoft.testermatchingplatform.domain.task.Task;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.handler.exception;
+package io.wisoft.testermatchingplatform.handler.exception.tester;
 
 public class TesterNotFoundException extends RuntimeException {
     public TesterNotFoundException(String s) {

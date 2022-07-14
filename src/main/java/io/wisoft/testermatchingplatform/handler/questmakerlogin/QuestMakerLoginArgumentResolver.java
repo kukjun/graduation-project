@@ -1,6 +1,6 @@
-package io.wisoft.testermatchingplatform.handler.questmaker;
+package io.wisoft.testermatchingplatform.handler.questmakerlogin;
 
-import com.wisoft.io.testermatchingplatform.annotation.Login;
+import io.wisoft.testermatchingplatform.annotation.Login;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
