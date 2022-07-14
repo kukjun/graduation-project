@@ -16,6 +16,7 @@ public class EvaluationEntity {
 
     @Id
     @Column(name = "Auth_ID")
+    private Long id;
 
     @JoinColumn(name = "AUTH_ID")
     @OneToOne

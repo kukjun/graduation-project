@@ -12,7 +12,7 @@ import javax.validation.groups.Default;
 
 @Getter
 @RequiredArgsConstructor
-public class TesterRegisterRequest {
+public class TesterSignUpRequest {
 
     @NotBlank(message = "해당 항목을 필수 항목입니다.")
     private String email;
@@ -26,7 +26,7 @@ public class TesterRegisterRequest {
     @NotBlank(message = "해당 항목을 필수 항목입니다.")
     private String phoneNumber;
 
-    private String preferCategoryName;
+    private Long preferCategoryId;
 
     private String introMessage;
 

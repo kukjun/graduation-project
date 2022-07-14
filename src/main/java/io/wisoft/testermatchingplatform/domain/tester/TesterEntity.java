@@ -1,20 +1,20 @@
 package io.wisoft.testermatchingplatform.domain.tester;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.wisoft.testermatchingplatform.domain.category.CategoryEntity;
 import io.wisoft.testermatchingplatform.domain.grade.GradeEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
 @Table(name = "tester")
+@AllArgsConstructor
 @NoArgsConstructor
+
 public class TesterEntity {
 
     @Id
@@ -41,21 +41,6 @@ public class TesterEntity {
     @ManyToOne
     private GradeEntity grade;
 
-    private Date registerTime;
-
-    public TesterEntity(Long id, String email, String password, String nickname, String phoneNumber, CategoryEntity preferCategory, String introMessage, String introPictureRef, GradeEntity grade, Date registerTime) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.phoneNumber = phoneNumber;
-        this.preferCategory = preferCategory;
-        this.introMessage = introMessage;
-        this.introPictureRef = introPictureRef;
-        this.grade = grade;
-        this.registerTime = registerTime;
-    }
-
 
     public static TesterEntity from(final Tester tester) {
         return new TesterEntity(
@@ -67,8 +52,7 @@ public class TesterEntity {
                 CategoryEntity.from(tester.getPreferCategory()),
                 tester.getIntroMessage(),
                 tester.getIntroPictureRef(),
-                GradeEntity.from(tester.getGrade()),
-                tester.getRegisterTime()
+                GradeEntity.from(tester.getGrade())
         );
     }
 
@@ -82,8 +66,7 @@ public class TesterEntity {
                 this.preferCategory == null ? null : this.preferCategory.toDomain(),
                 this.introMessage,
                 this.introPictureRef,
-                this.grade == null ? null : this.grade.toDomain(),
-                this.registerTime
+                this.grade == null ? null : this.grade.toDomain()
         );
     }
 }
