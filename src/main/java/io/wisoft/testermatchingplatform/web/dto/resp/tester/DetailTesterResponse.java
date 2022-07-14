@@ -23,7 +23,7 @@ public class DetailTesterResponse {
         this.phoneNumber = tester.getPhoneNumber();
         this.preferCategoryName = tester.getPreferCategory().getName();
         this.introMessage = tester.getIntroMessage();
-        this.introPictureReference = tester.getIntroPictureReference();
+        this.introPictureReference = tester.getIntroPictureRef();
     }
 
 
