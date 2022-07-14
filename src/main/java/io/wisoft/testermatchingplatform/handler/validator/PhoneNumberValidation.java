@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.validator;
+package io.wisoft.testermatchingplatform.handler.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,7 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.evaluation;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import io.wisoft.testermatchingplatform.domain.auth.Auth;
 import io.wisoft.testermatchingplatform.domain.auth.AuthEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +15,7 @@ public class EvaluationEntity {
 
     @Id
     @Column(name = "Auth_ID")
+    private Long id;
 
     @JoinColumn(name = "AUTH_ID")
     @OneToOne
