@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -41,6 +42,7 @@ public class TesterEntity {
     @ManyToOne
     private GradeEntity grade;
 
+    private Timestamp registerTime;
 
     public static TesterEntity from(final Tester tester) {
         return new TesterEntity(
@@ -69,4 +71,5 @@ public class TesterEntity {
                 this.grade == null ? null : this.grade.toDomain()
         );
     }
+
 }

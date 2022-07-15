@@ -13,11 +13,11 @@ public class GradeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 
-    private int availableQuestAmount;
+    private Long availableQuestAmount;
 
     public static GradeEntity from(final Grade grade){
         return new GradeEntity(
@@ -27,7 +27,7 @@ public class GradeEntity {
         );
     }
 
-    public GradeEntity(int id, String name, int availableQuestAmount) {
+    public GradeEntity(Long id, String name, Long availableQuestAmount) {
         this.id = id;
         this.name = name;
         this.availableQuestAmount = availableQuestAmount;

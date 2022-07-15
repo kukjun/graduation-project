@@ -6,9 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Grade {
-    private int id;
+    private Long id;
     private String name;
-    private int available_quest_amount;
+    private Long available_quest_amount;
+
 
     public static Long initialTesterGrade() {
         return 1L;

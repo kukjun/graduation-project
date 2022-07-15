@@ -14,7 +14,7 @@ public class DetailTesterResponse {
     private String phoneNumber;
     private String preferCategoryName;
     private String introMessage;
-    private String introPictureReference;
+    private String introPictureRef;
 
     public DetailTesterResponse(Tester tester) {
         this.email = tester.getEmail();
@@ -23,7 +23,7 @@ public class DetailTesterResponse {
         this.phoneNumber = tester.getPhoneNumber();
         this.preferCategoryName = tester.getPreferCategory().getName();
         this.introMessage = tester.getIntroMessage();
-        this.introPictureReference = tester.getIntroPictureRef();
+        this.introPictureRef = tester.getIntroPictureRef();
     }
 
 

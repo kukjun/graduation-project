@@ -7,20 +7,38 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Tester {
     private Long id;
-    private final String email;
-    private final String password;
-    private final String nickname;
-    private final String phoneNumber;
-    private final Category preferCategory;
-    private final String introMessage;
-    private final String introPictureRef;
-    private final Grade grade;
+    private String email;
+    private String password;
+    private String nickname;
+    private String phoneNumber;
+    private Category preferCategory;
+    private String introMessage;
+    private String introPictureRef;
+    private Grade grade;
+
+    private Timestamp registerTime;
+
+    public Tester(String email, String password, String nickname, String phoneNumber, Category preferCategory, String introMessage, String introPictureRef, Grade grade, Timestamp registerTime) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.phoneNumber = phoneNumber;
+        this.preferCategory = preferCategory;
+        this.introMessage = introMessage;
+        this.introPictureRef = introPictureRef;
+        this.grade = grade;
+        this.registerTime = registerTime;
+    }
+
 
 
 }
