@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.handler;
 
+import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.TesterAuthException;
@@ -17,7 +18,7 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException.class)
-    public ResponseEntity<ErrorResponse> emailOverlap(final io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException e) {
+    public ResponseEntity<ErrorResponse> emailOverlap(final EmailOverlapException e) {
         ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
 
         return ResponseEntity.status(HttpStatus.CONFLICT)

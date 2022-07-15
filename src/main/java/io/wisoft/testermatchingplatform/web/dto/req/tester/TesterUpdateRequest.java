@@ -1,22 +1,27 @@
 package io.wisoft.testermatchingplatform.web.dto.req.tester;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.wisoft.testermatchingplatform.handler.validator.image.Custom;
 import io.wisoft.testermatchingplatform.handler.validator.image.Image;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
+import java.sql.Timestamp;
 
 @Getter
-@RequiredArgsConstructor
+@Setter
+@JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TesterUpdateRequest {
 
-    @NotBlank(message = "해당 항목을 필수 항목입니다.")
-    private Long id;
-
+    @Email
     @NotBlank(message = "해당 항목을 필수 항목입니다.")
     private String email;
 
@@ -29,7 +34,7 @@ public class TesterUpdateRequest {
     @NotBlank(message = "해당 항목을 필수 항목입니다.")
     private String phoneNumber;
 
-    private String preferCategoryName;
+    private Long preferCategoryId;
 
     private String introMessage;
 
