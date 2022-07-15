@@ -9,9 +9,11 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Tester {
     private Long id;
     private String email;
@@ -36,6 +38,7 @@ public class Tester {
         this.grade = grade;
         this.registerTime = registerTime;
     }
+
 
 
 }

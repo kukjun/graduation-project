@@ -10,6 +10,7 @@ public class Grade {
     private String name;
     private Long available_quest_amount;
 
+
     public static Long initialTesterGrade() {
         return 1L;
     }

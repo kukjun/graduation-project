@@ -45,6 +45,7 @@ public class TesterController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(testerManageService.signUp(testerSignUpRequest));
+
     }
 
 //    연관 내용 전부 지워야 함.
@@ -70,6 +71,7 @@ public class TesterController {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
                 .body(response);
+
     }
 
     @GetMapping("/testers/{tester_id}")

@@ -21,7 +21,7 @@ import javax.validation.groups.Default;
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TesterSignUpRequest {
 
-    @Email
+@Email
     @NotBlank(message = "해당 항목을 필수 항목입니다.")
     private String email;
 

@@ -8,6 +8,7 @@ import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
 import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
+
 import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.GradeNotFoundException;
