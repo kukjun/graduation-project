@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@Table(name = "evalutation")
+@Table(name = "evaluation")
 @Entity
 @NoArgsConstructor
 public class EvaluationEntity {
@@ -18,7 +18,7 @@ public class EvaluationEntity {
     private Long id;
 
     @JoinColumn(name = "AUTH_ID")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JsonManagedReference
     private AuthEntity authId;

@@ -16,7 +16,7 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long taskNumber;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUEST_ID")
     private QuestEntity quest;
     private String taskExampleRef;

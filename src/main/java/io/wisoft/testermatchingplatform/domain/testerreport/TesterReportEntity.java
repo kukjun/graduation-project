@@ -18,10 +18,10 @@ public class TesterReportEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "SUBMIT_ID")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private SubmitEntity submit;
     @JoinColumn(name = "REPORT_POLICY_ID")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private ReportPolicyEntity report;
     private String title;
     private Timestamp registerTime;

@@ -17,10 +17,10 @@ public class QuestMakerReportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "APPLY_ID")
     private ApplyEntity apply;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "REPORT_POLICY_ID")
     private ReportPolicyEntity report;
     private String title;

@@ -15,7 +15,7 @@ public class AuthEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUBMIT_ID")
     private SubmitEntity submit;
     private Long status;

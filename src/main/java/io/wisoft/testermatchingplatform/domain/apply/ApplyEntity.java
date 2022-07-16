@@ -20,11 +20,11 @@ public class ApplyEntity {
     private Long id;
     private Timestamp registerTime;
     private Timestamp permissionTime;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
     @JoinColumn(name = "TESTER_ID")
     private TesterEntity tester;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
     @JoinColumn(name = "QUEST_ID")
     private QuestEntity quest;
@@ -41,7 +41,7 @@ public class ApplyEntity {
         this.preferenceConditionSubmitRef = preferenceConditionSubmitRef;
     }
 
-    public static ApplyEntity from(final Apply apply){
+    public static ApplyEntity from(final Apply apply) {
         return new ApplyEntity(
                 apply.getId(),
                 apply.getRegisterTime(),
@@ -53,7 +53,7 @@ public class ApplyEntity {
         );
     }
 
-    public Apply toDomain(){
+    public Apply toDomain() {
         return new Apply(
                 this.id,
                 this.registerTime,

@@ -20,7 +20,7 @@ public class SubmitEntity {
     private Timestamp registerTime;
     private Timestamp reportTime;
     @JoinColumn(name = "TESTER_ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private TesterEntity tester;
     @JoinColumn(name = "QUEST_ID")
     @ManyToOne

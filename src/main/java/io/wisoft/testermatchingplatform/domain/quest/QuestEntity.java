@@ -19,7 +19,7 @@ public class QuestEntity {
     private Long id;
     private String title;
     private String content;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID")
     private CategoryEntity category;
     private Timestamp registerTime;
