@@ -7,17 +7,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface QuestRepository extends JpaRepository<QuestEntity, Long> {
+public interface QuestRepository extends JpaRepository<Quest, Long> {
 
     // 카테고리로 퀘스트 조회
-    List<QuestEntity> findByCategoryId(Long id);
+    List<Quest> findByCategoryId(Long id);
 
     // ntc로 퀘스트 조회
-    List<QuestEntity> findByQuestMakerId(Long id);
+    List<Quest> findByQuestMakerId(Long id);
 
     // 아이디로 퀘스트 하나 조회
     @Override
-    Optional<QuestEntity> findById(Long id);
+    Optional<Quest> findById(Long id);
 
     //퀘스트 save
 

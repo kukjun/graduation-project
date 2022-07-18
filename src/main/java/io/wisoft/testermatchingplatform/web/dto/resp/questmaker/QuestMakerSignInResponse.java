@@ -3,13 +3,13 @@ package io.wisoft.testermatchingplatform.web.dto.resp.questmaker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
-public class QuestMakerIdResponse {
+@Getter
+public class QuestMakerSignInResponse {
 
     private Long id;
 
-    public static QuestMakerIdResponse from(final Long id){
-        return new QuestMakerIdResponse(id);
+    public static QuestMakerSignInResponse from(final Long id) {
+        return new QuestMakerSignInResponse(id);
     }
 }

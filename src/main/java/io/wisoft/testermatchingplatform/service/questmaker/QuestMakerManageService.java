@@ -1,13 +1,12 @@
 package io.wisoft.testermatchingplatform.service.questmaker;
 
 import io.wisoft.testermatchingplatform.domain.apply.Apply;
-import io.wisoft.testermatchingplatform.domain.apply.ApplyEntity;
 import io.wisoft.testermatchingplatform.domain.apply.ApplyRepository;
 import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import io.wisoft.testermatchingplatform.domain.quest.Quest;
-import io.wisoft.testermatchingplatform.domain.quest.QuestEntity;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
+import io.wisoft.testermatchingplatform.domain.quest.QuestRelateTime;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
@@ -41,22 +40,21 @@ public class QuestMakerManageService {
     public QuestIdResponse registQuest(final QuestRegistRequest request, final Long questMakerId) {
         Category category = categoryRepository.findByName(request.getCategoryName()).orElseThrow(
                 () -> new CategoryNotFoundException("category not found")
-        ).toDomain();
+        );
         QuestMaker questMaker = questMakerRepository.findById(questMakerId).orElseThrow(
-                () -> new QuestMakerNotFoundException("questmakerlogin not found")
-        ).toDomain();
+                () -> new QuestMakerNotFoundException("questmaker not found")
+        );
 
         Quest quest = new Quest(
                 request.getTitle(),
                 request.getContent(),
                 category,
-                new Timestamp(System.currentTimeMillis()),
-                request.getRecruitmentTimeStart(),
-                request.getRecruitmentTimeLimit(),
-                request.getDurationTimeStart(),
-                request.getDurationTimeLimit(),
-                request.getModifyTimeStart(),
-                request.getModifyTimeLimit(),
+                new QuestRelateTime(request.getRecruitmentTimeStart(),
+                        request.getRecruitmentTimeLimit(),
+                        request.getDurationTimeStart(),
+                        request.getDurationTimeLimit(),
+                        request.getModifyTimeStart(),
+                        request.getModifyTimeLimit()),
                 questMaker,
                 request.getParticipantCapacity(),
                 request.getReward(),
@@ -64,7 +62,7 @@ public class QuestMakerManageService {
                 request.getPreferenceCondition()
         );
 
-        quest = questRepository.save(QuestEntity.from(quest)).toDomain();
+        quest = questRepository.save(quest);
         return QuestIdResponse.from(quest);
     }
 
@@ -79,23 +77,22 @@ public class QuestMakerManageService {
     public QuestIdResponse updateQuest(final Long questMakerId, final Long questId, final QuestRegistRequest request) {
         Category category = categoryRepository.findByName(request.getCategoryName()).orElseThrow(
                 () -> new CategoryNotFoundException("category not found")
-        ).toDomain();
+        );
         QuestMaker questMaker = questMakerRepository.findById(questMakerId).orElseThrow(
-                () -> new QuestMakerNotFoundException("questmakerlogin not found")
-        ).toDomain();
+                () -> new QuestMakerNotFoundException("questmaker not found")
+        );
 
         Quest quest = new Quest(
                 questId,
                 request.getTitle(),
                 request.getContent(),
                 category,
-                new Timestamp(System.currentTimeMillis()),
-                request.getRecruitmentTimeStart(),
-                request.getRecruitmentTimeLimit(),
-                request.getDurationTimeStart(),
-                request.getDurationTimeLimit(),
-                request.getModifyTimeStart(),
-                request.getModifyTimeLimit(),
+                new QuestRelateTime(request.getRecruitmentTimeStart(),
+                        request.getRecruitmentTimeLimit(),
+                        request.getDurationTimeStart(),
+                        request.getDurationTimeLimit(),
+                        request.getModifyTimeStart(),
+                        request.getModifyTimeLimit()),
                 questMaker,
                 request.getParticipantCapacity(),
                 request.getReward(),
@@ -103,7 +100,7 @@ public class QuestMakerManageService {
                 request.getPreferenceCondition()
         );
 
-        quest = questRepository.save(QuestEntity.from(quest)).toDomain();
+        quest = questRepository.save(quest);
         return QuestIdResponse.from(quest);
 
     }
@@ -113,28 +110,28 @@ public class QuestMakerManageService {
     public List<ApplyTesterListResponse> selectQuestApplyTester(final Long questId) {
         return applyRepository.findByQuest_Id(questId)
                 .stream()
-                .map(ApplyEntity->ApplyTesterListResponse.from(ApplyEntity.toDomain()))
+                .map(ApplyTesterListResponse::from)
                 .collect(Collectors.toList());
     }
 
     // 퀘스트 신청자 세부 조회
     @Transactional
-    public ApplyTesterDetailResponse selectApplyTesterDetail(final Long applyId){
+    public ApplyTesterDetailResponse selectApplyTesterDetail(final Long applyId) {
         Apply apply = applyRepository.findById(applyId).orElseThrow(
-            // 예외 처리
-        ).toDomain();
+                // 예외 처리
+        );
         return ApplyTesterDetailResponse.from(apply);
     }
 
     // 퀘스트 신청자 승인
     @Transactional
-    public ApplyIdResponse applyTesterApprove(final Long applyId, final ApproveRequest approveRequest){
+    public ApplyIdResponse applyTesterApprove(final Long applyId, final ApproveRequest approveRequest) {
         Apply apply = applyRepository.findById(applyId).orElseThrow(
 
-        ).toDomain();
-        if (approveRequest.getSuccess() == 1){
+        );
+        if (approveRequest.getSuccess() == 1) {
             apply.setPermissionTime(new Timestamp(System.currentTimeMillis()));
-            apply = applyRepository.save(ApplyEntity.from(apply)).toDomain();
+            apply = applyRepository.save(apply);
         }
         return ApplyIdResponse.from(apply);
     }

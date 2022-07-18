@@ -1,7 +1,7 @@
 package io.wisoft.testermatchingplatform.config;
 
-import io.wisoft.testermatchingplatform.handler.questmakerlogin.QuestMakerLoginArgumentResolver;
-import io.wisoft.testermatchingplatform.handler.questmakerlogin.QuestMakerLoginCheckInterceptor;
+import io.wisoft.testermatchingplatform.handler.interceptor.questmakerlogin.QuestMakerLoginArgumentResolver;
+import io.wisoft.testermatchingplatform.handler.interceptor.questmakerlogin.QuestMakerLoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -18,7 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")
-                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3_600);

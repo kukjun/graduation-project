@@ -27,8 +27,8 @@ public class QuestSimpleInfoResponse {
                 quest.getContent(),
                 quest.getCategory().getName(),
                 quest.getRegisterTime(),
-                quest.getRecruitmentTimeStart(),
-                quest.getRecruitmentTimeLimit(),
+                quest.getQuestRelateTime().getRecruitmentTimeStart(),
+                quest.getQuestRelateTime().getRecruitmentTimeLimit(),
                 quest.getQuestMaker().getNickname(),
                 quest.getParticipantCapacity(),
                 quest.getReward()

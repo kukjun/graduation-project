@@ -1,7 +1,7 @@
 package io.wisoft.testermatchingplatform.domain.tasksubmit;
 
-import io.wisoft.testermatchingplatform.domain.submit.SubmitEntity;
-import io.wisoft.testermatchingplatform.domain.task.TaskEntity;
+import io.wisoft.testermatchingplatform.domain.submit.Submit;
+import io.wisoft.testermatchingplatform.domain.task.Task;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,13 +18,13 @@ public class TaskSubmitId implements Serializable {
 
     @JoinColumn(name = "SUBMIT_ID")
     @OneToOne(fetch = FetchType.LAZY)
-    private SubmitEntity submit;
+    private Submit submit;
 
     @JoinColumn(name = "TASK_ID")
     @OneToOne(fetch = FetchType.LAZY)
-    private TaskEntity task;
+    private Task task;
 
-    public TaskSubmitId(SubmitEntity submit, TaskEntity task) {
+    public TaskSubmitId(Submit submit, Task task) {
         this.submit = submit;
         this.task = task;
     }

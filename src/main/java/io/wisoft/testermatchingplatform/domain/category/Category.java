@@ -1,12 +1,23 @@
 package io.wisoft.testermatchingplatform.domain.category;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@AllArgsConstructor
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "category")
+@NoArgsConstructor
 public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
+    public Category(String name) {
+        this.name = name;
+    }
 }

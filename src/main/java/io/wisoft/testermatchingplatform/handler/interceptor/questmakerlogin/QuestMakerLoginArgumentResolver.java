@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.handler.questmakerlogin;
+package io.wisoft.testermatchingplatform.handler.interceptor.questmakerlogin;
 
 import io.wisoft.testermatchingplatform.annotation.Login;
 import lombok.extern.slf4j.Slf4j;

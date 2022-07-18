@@ -4,11 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface QuestMakerRepository extends JpaRepository<QuestMakerEntity,Long> {
+public interface QuestMakerRepository extends JpaRepository<QuestMaker,Long> {
 
 
     @Override
-    Optional<QuestMakerEntity> findById(Long id);
+    Optional<QuestMaker> findById(Long id);
 
-    Optional<QuestMakerEntity> findByEmail(String email);
+    Optional<QuestMaker> findByEmail(String email);
 }

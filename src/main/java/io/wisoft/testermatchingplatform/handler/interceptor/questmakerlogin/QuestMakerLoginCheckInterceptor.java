@@ -1,4 +1,4 @@
-package io.wisoft.testermatchingplatform.handler.questmakerlogin;
+package io.wisoft.testermatchingplatform.handler.interceptor.questmakerlogin;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 

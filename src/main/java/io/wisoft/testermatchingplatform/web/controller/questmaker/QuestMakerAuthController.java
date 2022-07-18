@@ -3,7 +3,8 @@ package io.wisoft.testermatchingplatform.web.controller.questmaker;
 import io.wisoft.testermatchingplatform.service.questmaker.QuestMakerAuthService;
 import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSigninRequest;
 import io.wisoft.testermatchingplatform.web.dto.req.questmaker.QuestMakerSignupRequest;
-import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerIdResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerSignInResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerSignUpResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,9 @@ public class QuestMakerAuthController {
 
     // 회원 가입
     @PostMapping("/signup")
-    public ResponseEntity<QuestMakerIdResponse> signupQuestMaker(@RequestBody QuestMakerSignupRequest request){
+    public ResponseEntity<QuestMakerSignUpResponse> signupQuestMaker(@RequestBody QuestMakerSignupRequest request){
         // 사용자 등록
-        QuestMakerIdResponse response = this.questMakerAuthService.signupQuestMaker(request);
+        QuestMakerSignUpResponse response = this.questMakerAuthService.signupQuestMaker(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -41,11 +42,11 @@ public class QuestMakerAuthController {
 
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<QuestMakerIdResponse> loginQuestMaker(
+    public ResponseEntity<QuestMakerSignInResponse> loginQuestMaker(
             @RequestBody QuestMakerSigninRequest request,
             HttpServletRequest httpServletRequest
     ){
-        QuestMakerIdResponse response = this.questMakerAuthService.loginQuestMaker(request);
+        QuestMakerSignInResponse response = this.questMakerAuthService.loginQuestMaker(request);
         // 세션 등록
         HttpSession session = httpServletRequest.getSession();
         session.setAttribute("questMaker",response.getId());

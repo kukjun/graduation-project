@@ -1,37 +1,31 @@
 package io.wisoft.testermatchingplatform.domain.questmaker;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import io.wisoft.testermatchingplatform.domain.BaseTime;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Getter
-@AllArgsConstructor
-public class QuestMaker {
+@Data
+@Entity
+@Table(name = "quest_maker")
+@NoArgsConstructor
+public class QuestMaker extends BaseTime {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String password;
     private String nickname;
     private String phoneNumber;
-    private Timestamp registerTime;
 
-    public QuestMaker(String email, String password, String nickname, String phoneNumber, Timestamp registerTime) {
+    public QuestMaker(String email, String password, String nickname, String phoneNumber) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
-        this.registerTime = registerTime;
-    }
-
-    public static QuestMaker to(final QuestMakerEntity questMaker) {
-        return new QuestMaker(
-                questMaker.getId(),
-                questMaker.getEmail(),
-                questMaker.getPassword(),
-                questMaker.getNickname(),
-                questMaker.getPhoneNumber(),
-                questMaker.getRegisterTime()
-        );
     }
 
     public void checkPassword(final String confirmPassword) {

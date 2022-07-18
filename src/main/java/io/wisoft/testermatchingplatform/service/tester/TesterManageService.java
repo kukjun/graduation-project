@@ -4,7 +4,6 @@ import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import io.wisoft.testermatchingplatform.domain.grade.Grade;
 import io.wisoft.testermatchingplatform.domain.grade.GradeRepository;
 import io.wisoft.testermatchingplatform.domain.tester.Tester;
-import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
 import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
@@ -12,10 +11,8 @@ import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapExcep
 import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.GradeNotFoundException;
-import io.wisoft.testermatchingplatform.handler.exception.tester.TesterAuthException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.TesterNotFoundException;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterSignUpRequest;
-import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterUpdateRequest;
 import io.wisoft.testermatchingplatform.web.dto.resp.tester.SignUpResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.tester.DetailTesterResponse;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +42,7 @@ public class TesterManageService {
     public DetailTesterResponse findByTesterId(Long testerId) {
 
         Tester tester = testerRepository.findById(testerId)
-                .orElseThrow(() -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."))
-                .toDomain();
+                .orElseThrow(() -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."));
 
         return new DetailTesterResponse(tester);
     }
@@ -70,20 +66,17 @@ public class TesterManageService {
                 request.getPhoneNumber(),
                 categoryRepository.findById(request.getPreferCategoryId())
                         .orElseThrow(
-                                () -> new CategoryNotFoundException(request.getPreferCategoryId() + "인 카테고리를 찾을 수 없습니다."))
-                        .toDomain(),
+                                () -> new CategoryNotFoundException(request.getPreferCategoryId() + "인 카테고리를 찾을 수 없습니다.")),
                 request.getIntroMessage(),
                 profileImagePath,
                 gradeRepository.findById(Grade.initialTesterGrade())
                         .orElseThrow(
                                 () -> new GradeNotFoundException("초기 설정용 Grade가 등록되어 있지 않습니다.")
-                        ).toDomain(),
-                new Timestamp(System.currentTimeMillis())
+                        )
         );
 
         tester = testerRepository
-                .save(TesterEntity.from(tester))
-                .toDomain();
+                .save(tester);
 
         return new SignUpResponse(tester.getId());
 

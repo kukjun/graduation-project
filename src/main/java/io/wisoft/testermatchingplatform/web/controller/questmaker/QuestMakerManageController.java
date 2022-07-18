@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/questMakers")
-public class QuestMakerActiveController {
+public class QuestMakerManageController {
 
     private final QuestMakerManageService questMakerManageService;
 
@@ -76,7 +76,7 @@ public class QuestMakerActiveController {
     }
 
     private void loginCheck(Long id) {
-        if (id == null) throw new QuestMakerNotLoginException("");
+        if (id == null) throw new QuestMakerNotLoginException("questmaker not login");
     }
 
 }

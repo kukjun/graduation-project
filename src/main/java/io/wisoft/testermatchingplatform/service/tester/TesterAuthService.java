@@ -2,7 +2,6 @@ package io.wisoft.testermatchingplatform.service.tester;
 
 import io.wisoft.testermatchingplatform.domain.category.CategoryRepository;
 import io.wisoft.testermatchingplatform.domain.tester.Tester;
-import io.wisoft.testermatchingplatform.domain.tester.TesterEntity;
 import io.wisoft.testermatchingplatform.domain.tester.TesterRepository;
 import io.wisoft.testermatchingplatform.handler.FileHandler;
 import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
@@ -12,8 +11,8 @@ import io.wisoft.testermatchingplatform.handler.exception.tester.TesterAuthExcep
 import io.wisoft.testermatchingplatform.handler.exception.tester.TesterNotFoundException;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterSignInRequest;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterUpdateRequest;
-import io.wisoft.testermatchingplatform.web.dto.resp.TesterSignInResponse;
-import io.wisoft.testermatchingplatform.web.dto.resp.TesterUpdateResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.tester.TesterSignInResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.tester.TesterUpdateResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -42,8 +41,7 @@ public class TesterAuthService {
     public TesterUpdateResponse updateTester(TesterUpdateRequest testerUpdateRequest, Long testerId) {
 
         Tester tester = testerRepository.findById(testerId).orElseThrow(
-                        () -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."))
-                .toDomain();
+                        () -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."));
 
         if (testerRepository.existsByEmail(testerUpdateRequest.getEmail())) {
             throw new EmailOverlapException(testerUpdateRequest.getEmail() + "은 중복입니다.");
@@ -60,7 +58,7 @@ public class TesterAuthService {
                 categoryRepository.findById(testerUpdateRequest.getPreferCategoryId())
                         .orElseThrow(
                                 () -> new CategoryNotFoundException("Category Id: " + testerUpdateRequest.getPreferCategoryId() + "를 찾을 수 없음")
-                        ).toDomain()
+                        )
         );
         tester.setIntroMessage(testerUpdateRequest.getIntroMessage());
         if (!testerUpdateRequest.getIntroPicture().isEmpty()) {
@@ -72,7 +70,7 @@ public class TesterAuthService {
         }
 
         TesterUpdateResponse response =
-                new TesterUpdateResponse(testerRepository.save(TesterEntity.from(tester)).toDomain().getId());
+                new TesterUpdateResponse(testerRepository.save(tester).getId());
 
         return response;
     }
