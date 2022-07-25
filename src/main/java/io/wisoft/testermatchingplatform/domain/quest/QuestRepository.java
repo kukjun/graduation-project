@@ -1,19 +1,24 @@
 package io.wisoft.testermatchingplatform.domain.quest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface QuestRepository extends JpaRepository<Quest, Long> {
 
+    @EntityGraph("questFound")
+    Page<Quest> findAll(Pageable pageable);
+
     // 카테고리로 퀘스트 조회
-    List<Quest> findByCategoryId(Long id);
+    Page<Quest> findByCategoryId(Long id,Pageable pageable);
 
     // ntc로 퀘스트 조회
-    List<Quest> findByQuestMakerId(Long id);
+    Page<Quest> findByQuestMakerId(Long id,Pageable pageable);
 
     // 아이디로 퀘스트 하나 조회
     @Override

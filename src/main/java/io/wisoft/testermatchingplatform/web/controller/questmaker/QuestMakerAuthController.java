@@ -8,6 +8,7 @@ import io.wisoft.testermatchingplatform.web.dto.resp.questmaker.QuestMakerSignUp
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public class QuestMakerAuthController {
 
     // 회원 가입
     @PostMapping("/signup")
-    public ResponseEntity<QuestMakerSignUpResponse> signupQuestMaker(@RequestBody QuestMakerSignupRequest request){
+    public ResponseEntity<QuestMakerSignUpResponse> signupQuestMaker(@Validated @RequestBody QuestMakerSignupRequest request){
         // 사용자 등록
         QuestMakerSignUpResponse response = this.questMakerAuthService.signupQuestMaker(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -43,6 +44,7 @@ public class QuestMakerAuthController {
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<QuestMakerSignInResponse> loginQuestMaker(
+            @Validated
             @RequestBody QuestMakerSigninRequest request,
             HttpServletRequest httpServletRequest
     ){

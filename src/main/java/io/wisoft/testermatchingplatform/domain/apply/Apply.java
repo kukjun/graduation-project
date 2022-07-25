@@ -14,13 +14,14 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "apply")
 @NoArgsConstructor
+@NamedEntityGraph(name = "applyWithTester",attributeNodes = {@NamedAttributeNode("tester")})
 public class Apply extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp permissionTime;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonManagedReference
     @JoinColumn(name = "TESTER_ID")
     private Tester tester;

@@ -9,6 +9,10 @@ import io.wisoft.testermatchingplatform.domain.quest.QuestRepository;
 import io.wisoft.testermatchingplatform.domain.quest.QuestRelateTime;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMaker;
 import io.wisoft.testermatchingplatform.domain.questmaker.QuestMakerRepository;
+import io.wisoft.testermatchingplatform.domain.submit.Submit;
+import io.wisoft.testermatchingplatform.domain.submit.SubmitRepository;
+import io.wisoft.testermatchingplatform.domain.tasksubmit.TaskSubmit;
+import io.wisoft.testermatchingplatform.domain.tasksubmit.TaskSubmitRepository;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.questmaker.QuestMakerNotFoundException;
 import io.wisoft.testermatchingplatform.web.dto.req.apply.ApproveRequest;
@@ -17,7 +21,11 @@ import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyIdResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterDetailResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterListResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestIdResponse;
+import io.wisoft.testermatchingplatform.web.dto.resp.submit.SubmitTesterListResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,6 +42,10 @@ public class QuestMakerManageService {
     private final QuestRepository questRepository;
 
     private final ApplyRepository applyRepository;
+
+    private final SubmitRepository submitRepository;
+
+    private final TaskSubmitRepository taskSubmitRepository;
 
     // 퀘스트 등록
     @Transactional
@@ -107,11 +119,10 @@ public class QuestMakerManageService {
 
     // 퀘스트 신청자 조회
     @Transactional
-    public List<ApplyTesterListResponse> selectQuestApplyTester(final Long questId) {
-        return applyRepository.findByQuest_Id(questId)
-                .stream()
-                .map(ApplyTesterListResponse::from)
-                .collect(Collectors.toList());
+    public Page<ApplyTesterListResponse> selectQuestApplyTester(final Long questId) {
+        Pageable pageable = PageRequest.of(0,50);
+        return applyRepository.findByQuest_Id(questId,pageable)
+                .map(ApplyTesterListResponse::from);
     }
 
     // 퀘스트 신청자 세부 조회
@@ -135,5 +146,6 @@ public class QuestMakerManageService {
         }
         return ApplyIdResponse.from(apply);
     }
+
 
 }

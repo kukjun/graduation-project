@@ -1,6 +1,7 @@
 package io.wisoft.testermatchingplatform.web.controller.questmaker;
 
 import io.wisoft.testermatchingplatform.annotation.Login;
+import io.wisoft.testermatchingplatform.domain.submit.Submit;
 import io.wisoft.testermatchingplatform.handler.exception.questmaker.QuestMakerNotLoginException;
 import io.wisoft.testermatchingplatform.service.questmaker.QuestMakerManageService;
 import io.wisoft.testermatchingplatform.web.dto.req.apply.ApproveRequest;
@@ -10,8 +11,10 @@ import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterDetailResp
 import io.wisoft.testermatchingplatform.web.dto.resp.apply.ApplyTesterListResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestIdResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class QuestMakerManageController {
     private final QuestMakerManageService questMakerManageService;
 
     @PostMapping("/quests")
-    public ResponseEntity<QuestIdResponse> registQuest(@Login final Long id, @RequestBody final QuestRegistRequest request) {
+    public ResponseEntity<QuestIdResponse> registQuest(@Login final Long id,@Validated @RequestBody final QuestRegistRequest request) {
         loginCheck(id);
         QuestIdResponse response = questMakerManageService.registQuest(request, id);
         return ResponseEntity.ok().body(response);
@@ -39,18 +42,18 @@ public class QuestMakerManageController {
     }
 
     @PatchMapping("/quests")
-    public ResponseEntity<QuestIdResponse> updateQuest(@Login final Long id, @RequestParam final Long quest_id, @RequestBody final QuestRegistRequest request) {
+    public ResponseEntity<QuestIdResponse> updateQuest(@Login final Long id, @RequestParam final Long quest_id,@Validated @RequestBody final QuestRegistRequest request) {
         loginCheck(id);
         QuestIdResponse response = questMakerManageService.updateQuest(id, quest_id, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/quests/{questId}/applies")
-    public ResponseEntity<List<ApplyTesterListResponse>> applyTesterList(
+    public ResponseEntity<Page<ApplyTesterListResponse>> applyTesterList(
             @Login final Long id, @PathVariable final Long questId
     ) {
         loginCheck(id);
-        List<ApplyTesterListResponse> responseList = questMakerManageService.selectQuestApplyTester(questId);
+        Page<ApplyTesterListResponse> responseList = questMakerManageService.selectQuestApplyTester(questId);
         return ResponseEntity.ok().body(responseList);
     }
 
@@ -68,12 +71,14 @@ public class QuestMakerManageController {
     public ResponseEntity<ApplyIdResponse> applyTesterApprove(
             @Login final Long id,
             @RequestParam final Long apply_id,
-            @RequestBody final ApproveRequest approveRequest
+            @Validated @RequestBody final ApproveRequest approveRequest
     ) {
         loginCheck(id);
         ApplyIdResponse response = questMakerManageService.applyTesterApprove(apply_id,approveRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+//    @GetMapping("/quests/{questId}/submits")
 
     private void loginCheck(Long id) {
         if (id == null) throw new QuestMakerNotLoginException("questmaker not login");

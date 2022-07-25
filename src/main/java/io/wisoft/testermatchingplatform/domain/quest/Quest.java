@@ -12,13 +12,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "quest")
 @NoArgsConstructor
+@NamedEntityGraph(name = "questFound", attributeNodes = {@NamedAttributeNode("category"), @NamedAttributeNode("questMaker")})
 public class Quest extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String content;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 

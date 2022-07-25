@@ -7,6 +7,10 @@ import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestInfoResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.quest.QuestSimpleInfoResponse;
 import io.wisoft.testermatchingplatform.web.dto.resp.task.TaskResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -21,29 +25,29 @@ public class QuestFoundService {
 
     @Transactional
     // 전체 조회
-    public List<QuestSimpleInfoResponse> all() {
-        return questRepository.findAll().
-                stream().
-                map(QuestSimpleInfoResponse::from).
-                collect(Collectors.toList());
+    public Page<QuestSimpleInfoResponse> all() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(0,10).withSort(sort);
+        return questRepository.findAll(pageable).
+                map(QuestSimpleInfoResponse::from);
     }
 
     @Transactional
     // 카테고리 조회
-    public List<QuestSimpleInfoResponse> findByCategoryId(final Long categoryId) {
-        return questRepository.findByCategoryId(categoryId).
-                stream().
-                map(QuestSimpleInfoResponse::from).
-                collect(Collectors.toList());
+    public Page<QuestSimpleInfoResponse> findByCategoryId(final Long categoryId) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(0,10).withSort(sort);
+        return questRepository.findByCategoryId(categoryId,pageable).
+                map(QuestSimpleInfoResponse::from);
     }
 
     @Transactional
     // Qm으로 조회
-    public List<QuestSimpleInfoResponse> findByQuestMakerId(final Long questMakerId) {
-        return questRepository.findByQuestMakerId(questMakerId).
-                stream().
-                map(QuestSimpleInfoResponse::from).
-                collect(Collectors.toList());
+    public Page<QuestSimpleInfoResponse> findByQuestMakerId(final Long questMakerId) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(0,10).withSort(sort);
+        return questRepository.findByQuestMakerId(questMakerId,pageable).
+                map(QuestSimpleInfoResponse::from);
     }
 
     // 하나만 조회

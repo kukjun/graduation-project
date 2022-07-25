@@ -36,7 +36,7 @@ public class Tester {
     private String introPictureRef;
 
     @JoinColumn(name = "GRADE_ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Grade grade;
 
     public Tester(String email, String password, String nickname, String phoneNumber, Category preferCategory, String introMessage, String introPictureRef, Grade grade) {
