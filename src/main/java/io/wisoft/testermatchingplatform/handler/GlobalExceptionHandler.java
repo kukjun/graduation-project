@@ -3,6 +3,7 @@ package io.wisoft.testermatchingplatform.handler;
 import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.PhoneNumberOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.TesterAuthException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.GradeNotFoundException;
 import lombok.Getter;
@@ -33,6 +34,14 @@ public class GlobalExceptionHandler {
                 .body(errorResponse);
     }
 
+    @ExceptionHandler(PhoneNumberOverlapException.class)
+    public ResponseEntity<ErrorResponse> phoneNumberOverlap(final PhoneNumberOverlapException e) {
+        ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(errorResponse);
+    }
+
     @ExceptionHandler(CategoryNotFoundException.class)
     public ResponseEntity<ErrorResponse> categoryNotFound(final CategoryNotFoundException e) {
         ErrorResponse errorResponse = generateErrorResponseWithMessage(e.getMessage());
@@ -56,6 +65,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(errorResponse);
     }
+
+
 
     private ErrorResponse generateErrorResponseWithMessage(String errorMessage) {
         final ErrorResponse errorResponse = new ErrorResponse();

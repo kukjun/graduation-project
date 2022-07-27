@@ -11,6 +11,7 @@ import io.wisoft.testermatchingplatform.handler.exception.auth.EmailOverlapExcep
 import io.wisoft.testermatchingplatform.handler.exception.auth.NicknameOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.category.CategoryNotFoundException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.GradeNotFoundException;
+import io.wisoft.testermatchingplatform.handler.exception.auth.PhoneNumberOverlapException;
 import io.wisoft.testermatchingplatform.handler.exception.tester.TesterNotFoundException;
 import io.wisoft.testermatchingplatform.web.dto.req.tester.TesterSignUpRequest;
 import io.wisoft.testermatchingplatform.web.dto.resp.tester.SignUpResponse;
@@ -18,8 +19,6 @@ import io.wisoft.testermatchingplatform.web.dto.resp.tester.DetailTesterResponse
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Timestamp;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +54,9 @@ public class TesterManageService {
         }
         if (testerRepository.existsByNickname(request.getNickname())) {
             throw new NicknameOverlapException(request.getNickname() + ": Nickname Overlap");
+        }
+        if (testerRepository.existsByPhoneNumber(request.getPhoneNumber())) {
+            throw new PhoneNumberOverlapException(request.getPhoneNumber() + ": Phone Number Overlap");
         }
 
         final String profileImagePath = FileHandler.saveFileData(request.getIntroPicture());

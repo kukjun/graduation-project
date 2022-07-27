@@ -1,5 +1,6 @@
 package io.wisoft.testermatchingplatform.domain.tester;
 
+import io.wisoft.testermatchingplatform.domain.BaseTime;
 import io.wisoft.testermatchingplatform.domain.category.Category;
 import io.wisoft.testermatchingplatform.domain.grade.Grade;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "tester")
 @NoArgsConstructor
-public class Tester {
+public class Tester extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

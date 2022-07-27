@@ -14,4 +14,6 @@ public interface TesterRepository extends JpaRepository<Tester,Long> {
 
     public boolean existsByNickname(String nickname);
 
+    public boolean existsByPhoneNumber(String phoneNumber);
+
 }

@@ -41,7 +41,7 @@ public class TesterAuthService {
     public TesterUpdateResponse updateTester(TesterUpdateRequest testerUpdateRequest, Long testerId) {
 
         Tester tester = testerRepository.findById(testerId).orElseThrow(
-                        () -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."));
+                () -> new TesterNotFoundException("tester ID: " + testerId + "를 찾을 수 없습니다."));
 
         if (testerRepository.existsByEmail(testerUpdateRequest.getEmail())) {
             throw new EmailOverlapException(testerUpdateRequest.getEmail() + "은 중복입니다.");
@@ -49,6 +49,7 @@ public class TesterAuthService {
         if (testerRepository.existsByNickname(testerUpdateRequest.getNickname())) {
             throw new NicknameOverlapException(testerUpdateRequest.getNickname() + "은 중복입니다.");
         }
+
 
         tester.setId(testerId);
         tester.setEmail(testerUpdateRequest.getEmail());
@@ -62,10 +63,10 @@ public class TesterAuthService {
         );
         tester.setIntroMessage(testerUpdateRequest.getIntroMessage());
         if (!testerUpdateRequest.getIntroPicture().isEmpty()) {
+
 //            이전 사진을 제거하고 새로운 사진을 저장할 수 있도록 하는 로직 필요
             String profilePath = FileHandler.saveFileData(testerUpdateRequest.getIntroPicture());
             tester.setIntroPictureRef(profilePath);
-
 
         }
 
